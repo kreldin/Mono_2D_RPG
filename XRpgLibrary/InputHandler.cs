@@ -6,21 +6,11 @@ namespace XRpgLibrary
 {
     public class InputHandler : GameComponent
     {
-        #region Keyboard Property Region
-
         public static KeyboardState KeyboardState { get; private set; }
         public static KeyboardState LastKeyboardState { get; private set; }
 
-        #endregion
-
-        #region Game Pad Property Region
-
         public static GamePadState[] GamePadStates { get; private set; }
         public static GamePadState[] LastGamePadStates { get; private set; }
-
-        #endregion
-
-        #region Constructor Region
 
         public InputHandler(Game game) : base(game)
         {
@@ -32,10 +22,6 @@ namespace XRpgLibrary
                 GamePadStates[(int) playerIndex] = GamePad.GetState(playerIndex);
             }
         }
-
-        #endregion
-
-        #region XNA Methods
 
         public override void Update(GameTime gameTime)
         {
@@ -51,18 +37,10 @@ namespace XRpgLibrary
             base.Update(gameTime);
         }
 
-        #endregion
-
-        #region General Method Region
-
         public static void Flush()
         {
             LastKeyboardState = KeyboardState;
         }
-
-        #endregion
-
-        #region Keyboard Region
 
         public static bool IsKeyReleased(Keys key)
         {
@@ -81,10 +59,6 @@ namespace XRpgLibrary
             return KeyboardState.IsKeyDown(key);
         }
 
-        #endregion
-
-        #region Game Pad Region
-
         public static bool IsButtonReleased(Buttons button, PlayerIndex index)
         {
             return GamePadStates[(int) index].IsButtonUp(button) &&
@@ -101,7 +75,5 @@ namespace XRpgLibrary
         {
             return GamePadStates[(int) index].IsButtonDown(button);
         }
-
-        #endregion
     }
 }

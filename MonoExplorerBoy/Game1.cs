@@ -14,24 +14,14 @@ namespace MonoExplorerBoy
         private GraphicsDeviceManager _graphics;
 
         public SpriteBatch SpriteBatch { get; set; }
-
-        #region Game State Region
-
-        private readonly GameStateManager _stateManager;
-
         public TitleScreen TitleScreen { get; set; }
+        public StartMenuScreen StartMenuScreen { get; set; }
+        public GamePlayScreen GamePlayScreen { get; set; }
+        public Rectangle ScreenRectangle { get; }
 
-        #endregion
-
-        #region Screen Field Region
-
-        private const int ScreenWidth = 1024;
-        private const int ScreenHeight = 768;
-
-        public readonly Rectangle ScreenRectangle;
-
-        #endregion
-
+        private static int ScreenWidth { get; } = 1024;
+        private static int ScreenHeight { get; } = 768;
+ 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this)
@@ -47,24 +37,14 @@ namespace MonoExplorerBoy
 
             Components.Add(new InputHandler(this));
 
-            _stateManager = new GameStateManager(this);
-            Components.Add(_stateManager);
+            var stateManager = new GameStateManager(this);
+            Components.Add(stateManager);
 
-            TitleScreen = new TitleScreen(this, _stateManager);
-            _stateManager.ChangeState(TitleScreen);
-        }
+            TitleScreen = new TitleScreen(this, stateManager);
+            StartMenuScreen = new StartMenuScreen(this, stateManager);
+            GamePlayScreen = new GamePlayScreen(this, stateManager);
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize()
-        {
-            // TODO: Add your initialization logic here
-
-            base.Initialize();
+            stateManager.ChangeState(TitleScreen);
         }
 
         /// <summary>

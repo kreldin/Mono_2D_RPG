@@ -1,23 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using XRpgLibrary;
+using XRpgLibrary.Controls;
 
 namespace MonoExplorerBoy.GameScreens
 {
-    public abstract partial class BaseGameState : GameState
+    public abstract class BaseGameState : GameState
     {
-        #region Fields Region
+        protected Game1 GameRef { get; set; }
 
-        protected Game1 GameRef;
+        protected ControlManager ControlManager { get; set; }
 
-        #endregion
-
-        #region Constructor Region
+        protected PlayerIndex PlayerIndexInControl { get; set; }
 
         protected BaseGameState(Game game, GameStateManager manager) : base(game, manager)
         {
             GameRef = (Game1)game;
+
+            PlayerIndexInControl = PlayerIndex.One;
         }
 
-        #endregion
+        protected override void LoadContent()
+        {
+            var content = Game.Content;
+
+            var menuFont = content.Load<SpriteFont>(@"Fonts\ControlFont");
+            ControlManager = new ControlManager(menuFont);
+            base.LoadContent();
+        }
     }
 }

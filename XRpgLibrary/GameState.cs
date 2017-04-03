@@ -6,17 +6,11 @@ namespace XRpgLibrary
 {
     public abstract class GameState : DrawableGameComponent
     {
-        #region Fields and Properties
-
         public List<GameComponent> Components { get; }
 
         public GameState Tag { get; }
 
-        protected GameStateManager StateManager;
-
-        #endregion
-
-        #region Constructor Region
+        protected GameStateManager StateManager { get; set; }
 
         protected GameState(Game game, GameStateManager manager) : base(game)
         {
@@ -24,10 +18,6 @@ namespace XRpgLibrary
             Components = new List<GameComponent>();
             Tag = this;
         }
-
-        #endregion
-
-        #region XNA Drawable Game Component Methods
 
         public override void Update(GameTime gameTime)
         {
@@ -46,20 +36,15 @@ namespace XRpgLibrary
         {
             foreach (var gameComponent in Components)
             {
-                if (!(gameComponent is DrawableGameComponent)) continue;
                 var drawableGameComponent = gameComponent as DrawableGameComponent;
 
-                if (drawableGameComponent.Visible)
+                if (drawableGameComponent?.Visible == true)
                 {
                     drawableGameComponent.Draw(gameTime);
                 }
             }
             base.Draw(gameTime);
         }
-
-        #endregion
-
-        #region GameState Method Region
 
         protected internal virtual void StateChange(object sender, EventArgs e)
         {
@@ -80,8 +65,7 @@ namespace XRpgLibrary
             foreach (var gameComponent in Components)
             {
                 gameComponent.Enabled = true;
-                var component = gameComponent as DrawableGameComponent;
-                if (component != null)
+                if (gameComponent is DrawableGameComponent component)
                 {
                     component.Visible = true;
                 }
@@ -95,14 +79,11 @@ namespace XRpgLibrary
             foreach (var gameComponent in Components)
             {
                 gameComponent.Enabled = false;
-                var component = gameComponent as DrawableGameComponent;
-                if (component != null)
+                if (gameComponent is DrawableGameComponent component)
                 {
                     component.Visible = false;
                 }
             }
         }
-
-        #endregion
     }
 }

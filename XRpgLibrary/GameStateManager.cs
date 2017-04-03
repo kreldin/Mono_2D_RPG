@@ -6,86 +6,74 @@ namespace XRpgLibrary
 {
     public class GameStateManager : GameComponent
     {
-        #region Event Region
+        private static int StartDrawOrder { get; } = 5000;
+        private static int DrawOrderInc { get; } = 100;
+
+        private Stack<GameState> GameStates { get; } = new Stack<GameState>();
+        private int DrawOrder { get; set; }
+
+        public GameState CurrentState => GameStates.Peek();
 
         public event EventHandler OnStateChange;
 
-        #endregion
-
-        #region Field and Properties Region
-
-        private readonly Stack<GameState> _gameStates = new Stack<GameState>();
-
-        private const int StartDrawOrder = 5000;
-        private const int DrawOrderInc = 100;
-        private int _drawOrder;
-
-        public GameState CurrentState => _gameStates.Peek();
-
-        #endregion
-
-        #region Constructor Region
-
         public GameStateManager(Game game) : base(game)
         {
-            _drawOrder = StartDrawOrder;
+            DrawOrder = StartDrawOrder;
         }
-
-        #endregion
-
-        #region Methods Region
 
         public void PopState()
         {
-            if (_gameStates.Count <= 0) return;
+            if (GameStates.Count <= 0)
+            {
+                return;
+            }
             RemoveState();
-            _drawOrder -= DrawOrderInc;
+            DrawOrder -= DrawOrderInc;
+
+            OnStateChange?.Invoke(this, null);
+        }
+
+        public void PushState(GameState newState)
+        {
+            DrawOrder += DrawOrderInc;
+            newState.DrawOrder = DrawOrder;
+
+            AddState(newState);
+
+            OnStateChange?.Invoke(this, null);
+        }
+
+        public void ChangeState(GameState newState)
+        {
+            while (GameStates.Count > 0)
+            {
+                RemoveState();
+            }
+
+            newState.DrawOrder = StartDrawOrder;
+            DrawOrder = StartDrawOrder;
+
+            AddState(newState);
 
             OnStateChange?.Invoke(this, null);
         }
 
         private void RemoveState()
         {
-            var state = _gameStates.Peek();
+            var state = GameStates.Peek();
             OnStateChange -= state.StateChange;
             Game.Components.Remove(state);
-            _gameStates.Pop();
-        }
-
-        public void PushState(GameState newState)
-        {
-            _drawOrder += DrawOrderInc;
-            newState.DrawOrder = _drawOrder;
-
-            AddState(newState);
-
-            OnStateChange?.Invoke(this, null);
+            GameStates.Pop();
         }
 
         private void AddState(GameState newState)
         {
-            _gameStates.Push(newState);
+            GameStates.Push(newState);
 
             Game.Components.Add(newState);
 
             OnStateChange += newState.StateChange;
         }
 
-        public void ChangeState(GameState newState)
-        {
-            while (_gameStates.Count > 0)
-            {
-                RemoveState();
-            }
-
-            newState.DrawOrder = StartDrawOrder;
-            _drawOrder = StartDrawOrder;
-
-            AddState(newState);
-
-            OnStateChange?.Invoke(this, null);
-        }
-
-        #endregion
     }
 }
