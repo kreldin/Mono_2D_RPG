@@ -58,27 +58,18 @@ namespace MonoExplorerBoy.GameScreens
                     arrowTexture.Height));
             ControlManager.Add(ArrowPictureBox);
 
-            StartGameLinkLabel = new LinkLabel
-            {
-                Text = "The story begins",
-                Size = StartGameLinkLabel.SpriteFont.MeasureString(StartGameLinkLabel.Text)
-            };
+            StartGameLinkLabel = new LinkLabel {Text = "The story begins"};
+            StartGameLinkLabel.Size = StartGameLinkLabel.SpriteFont.MeasureString(StartGameLinkLabel.Text);
             StartGameLinkLabel.Selected += MenuItem_Selected;
             ControlManager.Add(StartGameLinkLabel);
 
-            LoadGameLinkLabel = new LinkLabel
-            {
-                Text = "The story continues",
-                Size = LoadGameLinkLabel.SpriteFont.MeasureString(LoadGameLinkLabel.Text)
-            };
+            LoadGameLinkLabel = new LinkLabel {Text = "The story continues"};
+            LoadGameLinkLabel.Size = LoadGameLinkLabel.SpriteFont.MeasureString(LoadGameLinkLabel.Text);
             LoadGameLinkLabel.Selected += MenuItem_Selected;
             ControlManager.Add(LoadGameLinkLabel);
 
-            ExitGameLinkLabel = new LinkLabel
-            {
-                Text = "The story ends",
-                Size = ExitGameLinkLabel.SpriteFont.MeasureString(ExitGameLinkLabel.Text)
-            };
+            ExitGameLinkLabel = new LinkLabel {Text = "The story ends"};
+            ExitGameLinkLabel.Size = ExitGameLinkLabel.SpriteFont.MeasureString(ExitGameLinkLabel.Text);
             ExitGameLinkLabel.Selected += MenuItem_Selected;
             ControlManager.Add(ExitGameLinkLabel);
 

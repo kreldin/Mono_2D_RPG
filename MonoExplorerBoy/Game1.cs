@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoExplorerBoy.GameScreens;
 using XRpgLibrary;
+using XRpgLibrary.TileEngine;
 
 namespace MonoExplorerBoy
 {
@@ -21,7 +22,7 @@ namespace MonoExplorerBoy
 
         private static int ScreenWidth { get; } = 1024;
         private static int ScreenHeight { get; } = 768;
- 
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this)
