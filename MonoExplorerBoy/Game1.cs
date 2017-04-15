@@ -17,6 +17,7 @@ namespace MonoExplorerBoy
         public SpriteBatch SpriteBatch { get; set; }
         public TitleScreen TitleScreen { get; set; }
         public StartMenuScreen StartMenuScreen { get; set; }
+        public CharacterGeneratorScreen CharacterGeneratorScreen { get; set; }
         public GamePlayScreen GamePlayScreen { get; set; }
         public Rectangle ScreenRectangle { get; }
 
@@ -43,6 +44,7 @@ namespace MonoExplorerBoy
 
             TitleScreen = new TitleScreen(this, stateManager);
             StartMenuScreen = new StartMenuScreen(this, stateManager);
+            CharacterGeneratorScreen = new CharacterGeneratorScreen(this, stateManager);
             GamePlayScreen = new GamePlayScreen(this, stateManager);
 
             stateManager.ChangeState(TitleScreen);

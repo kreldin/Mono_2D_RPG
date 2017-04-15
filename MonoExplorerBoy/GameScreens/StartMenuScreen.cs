@@ -116,7 +116,7 @@ namespace MonoExplorerBoy.GameScreens
         {
             if (sender == StartGameLinkLabel)
             {
-                StateManager.PushState(GameRef.GamePlayScreen);
+                StateManager.PushState(GameRef.CharacterGeneratorScreen);
             }
             else if (sender == LoadGameLinkLabel)
             {
