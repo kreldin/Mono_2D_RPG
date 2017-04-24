@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoExplorerBoy.Components;
 using XRpgLibrary;
 using XRpgLibrary.TileEngine;
+using XRpgLibrary.SpriteClasses;
 
 namespace MonoExplorerBoy.GameScreens
 {
@@ -12,6 +14,7 @@ namespace MonoExplorerBoy.GameScreens
     {
         private TileMap Map { get; set; }
         private Player Player { get; }
+        private AnimatedSprite Sprite { get; set; }
 
         public GamePlayScreen(Game game, GameStateManager manager) : base(game, manager)
         {
@@ -20,6 +23,22 @@ namespace MonoExplorerBoy.GameScreens
 
         protected override void LoadContent()
         {
+            var spriteSheet = Game.Content.Load<Texture2D>(@"Sprites/PlayerSprites/malefighter");
+            var animationDown = new Animation(3, 32, 32, 0, 0);
+            var animationLeft = new Animation(3, 32, 32, 0, 32);
+            var animationRight = new Animation(3, 32, 32, 0, 64);
+            var animationUp = new Animation(3, 32, 32, 0, 96);
+
+            var animations = new Dictionary<AnimationKey, Animation>
+            {
+                { AnimationKey.Down, animationDown },
+                { AnimationKey.Left, animationLeft },
+                { AnimationKey.Right, animationRight} ,
+                { AnimationKey.Up, animationUp }
+            };
+
+            Sprite = new AnimatedSprite(spriteSheet, animations);
+
             base.LoadContent();
 
             var tilesetTexture = Game.Content.Load<Texture2D>(@"Tilesets\tileset1");
@@ -67,6 +86,72 @@ namespace MonoExplorerBoy.GameScreens
         public override void Update(GameTime gameTime)
         {
             Player.Update(gameTime);
+            Sprite.Update(gameTime);
+
+            var motion = new Vector2();
+
+            if (InputHandler.IsKeyDown(Keys.W) ||
+                InputHandler.IsButtonDown(Buttons.LeftThumbstickUp, PlayerIndex.One))
+            {
+                Sprite.CurrentAnimation = AnimationKey.Up;
+                motion.Y = -1;
+            }
+            else if (InputHandler.IsKeyDown(Keys.S) ||
+                     InputHandler.IsButtonDown(Buttons.LeftThumbstickDown, PlayerIndex.One))
+            {
+                Sprite.CurrentAnimation = AnimationKey.Down;
+                motion.Y = 1;
+            }
+
+            if (InputHandler.IsKeyDown(Keys.A) ||
+                InputHandler.IsButtonDown(Buttons.LeftThumbstickLeft, PlayerIndex.One))
+            {
+                Sprite.CurrentAnimation = AnimationKey.Left;
+                motion.X = -1;
+            }
+            else if (InputHandler.IsKeyDown(Keys.D) ||
+                     InputHandler.IsButtonDown(Buttons.LeftThumbstickRight, PlayerIndex.One))
+            {
+                Sprite.CurrentAnimation = AnimationKey.Right;
+                motion.X = 1;
+            }
+
+            if (motion != Vector2.Zero)
+            {
+                Sprite.IsAnimating = true;
+                motion.Normalize();
+
+                Sprite.Position += motion * Sprite.Speed;
+                Sprite.LockToMap();
+
+                if (Player.Camera.Mode == Camera.CameraMode.Follow)
+                {
+                    Player.Camera.LockToSprite(Sprite);
+                }
+            }
+            else
+            {
+                Sprite.IsAnimating = false;
+            }
+
+            if (InputHandler.IsKeyReleased(Keys.F) ||
+                InputHandler.IsButtonReleased(Buttons.RightStick, PlayerIndex.One))
+            {
+                Player.Camera.ToggleCameraMode();
+                if (Player.Camera.Mode == Camera.CameraMode.Follow)
+                {
+                    Player.Camera.LockToSprite(Sprite);
+                }
+            }
+
+            if (Player.Camera.Mode != Camera.CameraMode.Follow)
+            {
+                if (InputHandler.IsKeyReleased(Keys.C) ||
+                    InputHandler.IsButtonReleased(Buttons.LeftStick, PlayerIndex.One))
+                {
+                    Player.Camera.LockToSprite(Sprite);
+                }
+            }
 
             base.Update(gameTime);
         }
@@ -81,6 +166,7 @@ namespace MonoExplorerBoy.GameScreens
                 Matrix.Identity);
 
             Map.Draw(GameRef.SpriteBatch, Player.Camera);
+            Sprite.Draw(gameTime, GameRef.SpriteBatch, Player.Camera);
 
             base.Draw(gameTime);
 

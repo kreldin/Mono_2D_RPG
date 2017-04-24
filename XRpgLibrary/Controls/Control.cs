@@ -10,7 +10,7 @@ namespace XRpgLibrary.Controls
 
         public Vector2 Position
         {
-            get { return _position; }
+            get => _position;
             set
             {
                 _position = value;
@@ -26,18 +26,16 @@ namespace XRpgLibrary.Controls
         public bool Enabled { get; set; }
         public bool Visible { get; set; }
         public bool TabStop { get; set; }
-        public SpriteFont SpriteFont { get; set; }
-        public Color Color { get; set; }
         public string Type { get; set; }
+        public SpriteFont SpriteFont { get; set; } = ControlManager.SpriteFont;
+        public Color Color { get; set; } = Color.White;
 
         public event EventHandler Selected;
 
         protected Control()
         {
-            Color = Color.White;
             Enabled = true;
             Visible = true;
-            SpriteFont = ControlManager.SpriteFont;
         }
 
         public abstract void Update(GameTime gameTime);

@@ -8,10 +8,6 @@ namespace XRpgLibrary.TileEngine
 {
     public class TileMap
     {
-        private List<Tileset> Tilesets { get; }
-
-        private List<MapLayer> MapLayers { get; }
-
         private static int MapWidth { get; set; }
 
         private static int MapHeight { get; set; }
@@ -19,6 +15,10 @@ namespace XRpgLibrary.TileEngine
         public static int MapWidthInPixels => MapWidth * Engine.TileWidth;
 
         public static int MapHeightInPixels => MapHeight * Engine.TileHeight;
+
+        private List<Tileset> Tilesets { get; }
+
+        private List<MapLayer> MapLayers { get; }
 
         public TileMap(List<Tileset> tilesets, List<MapLayer> layers)
         {

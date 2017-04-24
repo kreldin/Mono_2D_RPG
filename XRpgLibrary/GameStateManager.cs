@@ -10,7 +10,7 @@ namespace XRpgLibrary
         private static int DrawOrderInc { get; } = 100;
 
         private Stack<GameState> GameStates { get; } = new Stack<GameState>();
-        private int DrawOrder { get; set; }
+        private int DrawOrder { get; set; } = StartDrawOrder;
 
         public GameState CurrentState => GameStates.Peek();
 
@@ -18,7 +18,6 @@ namespace XRpgLibrary
 
         public GameStateManager(Game game) : base(game)
         {
-            DrawOrder = StartDrawOrder;
         }
 
         public void PopState()
@@ -27,6 +26,7 @@ namespace XRpgLibrary
             {
                 return;
             }
+
             RemoveState();
             DrawOrder -= DrawOrderInc;
 

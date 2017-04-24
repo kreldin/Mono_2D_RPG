@@ -20,8 +20,8 @@ namespace XRpgLibrary.Controls
         public Color SelectedColor { get; set; } = Color.Red;
         public int SelectedIndex
         {
-            get { return SelectedItem; }
-            set { SelectedItem = (int) MathHelper.Clamp(value, 0.0f, Items.Count); }
+            get => SelectedItem;
+            set => SelectedItem = (int) MathHelper.Clamp(value, 0.0f, Items.Count);
         }
 
         public LeftRightSelector(Texture2D leftArrow, Texture2D rightArrow, Texture2D stop)

@@ -7,7 +7,7 @@ namespace XRpgLibrary.TileEngine
     {
         private readonly Rectangle[] _sourceRectangles;
 
-        public Texture2D Texture { get; private set; }
+        public Texture2D Texture { get; }
 
         public int TileWidth { get; }
 

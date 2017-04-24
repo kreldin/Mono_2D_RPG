@@ -8,11 +8,11 @@ namespace XRpgLibrary.Controls
 {
     public class ControlManager : List<Control>
     {
+        public event EventHandler FocusChanged;
+
         private int SelectedControl { get; set; }
 
         public static SpriteFont SpriteFont { get; private set; }
-
-        public event EventHandler FocusChanged;
 
         public ControlManager(SpriteFont spriteFont)
         {

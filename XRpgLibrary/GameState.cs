@@ -6,16 +6,15 @@ namespace XRpgLibrary
 {
     public abstract class GameState : DrawableGameComponent
     {
-        public List<GameComponent> Components { get; }
+        protected GameStateManager StateManager { get; set; }
+
+        public List<GameComponent> Components { get; } = new List<GameComponent>();
 
         public GameState Tag { get; }
-
-        protected GameStateManager StateManager { get; set; }
 
         protected GameState(Game game, GameStateManager manager) : base(game)
         {
             StateManager = manager;
-            Components = new List<GameComponent>();
             Tag = this;
         }
 

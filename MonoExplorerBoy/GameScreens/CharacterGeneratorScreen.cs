@@ -12,8 +12,8 @@ namespace MonoExplorerBoy.GameScreens
         private LeftRightSelector ClassSelector { get; set; }
         private PictureBox BackgroundPictureBox { get; set; }
 
-        private string[] GenderItems { get; } = {"Male", "Female"};
-        private string[] ClassItems { get; } = {"Fighter", "Wizard", "Rogue", "Priest "};
+        private string[] GenderItems { get; } = { "Male", "Female" };
+        private string[] ClassItems { get; } = { "Fighter", "Wizard", "Rogue", "Priest " };
 
         public CharacterGeneratorScreen(Game game, GameStateManager manager) : base(game, manager)
         {

@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoExplorerBoy.GameScreens;
 using XRpgLibrary;
-using XRpgLibrary.TileEngine;
 
 namespace MonoExplorerBoy
 {
@@ -12,7 +11,8 @@ namespace MonoExplorerBoy
     /// </summary>
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        private static int ScreenWidth { get; } = 1024;
+        private static int ScreenHeight { get; } = 768;
 
         public SpriteBatch SpriteBatch { get; set; }
         public TitleScreen TitleScreen { get; set; }
@@ -21,12 +21,11 @@ namespace MonoExplorerBoy
         public GamePlayScreen GamePlayScreen { get; set; }
         public Rectangle ScreenRectangle { get; }
 
-        private static int ScreenWidth { get; } = 1024;
-        private static int ScreenHeight { get; } = 768;
+        public GraphicsDeviceManager Graphics { get; }
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this)
+            Graphics = new GraphicsDeviceManager(this)
             {
                 GraphicsProfile = GraphicsProfile.HiDef,
                 PreferredBackBufferWidth = ScreenWidth,
@@ -79,7 +78,9 @@ namespace MonoExplorerBoy
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
                 Exit();
+            }
 
             // TODO: Add your update logic here
 
