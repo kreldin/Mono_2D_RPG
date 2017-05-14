@@ -120,7 +120,7 @@ namespace MonoExplorerBoy.GameScreens
             }
             else if (sender == LoadGameLinkLabel)
             {
-                StateManager.PushState(GameRef.GamePlayScreen);
+                //StateManager.PushState(GameRef.GamePlayScreen);
             }
             else if (sender == ExitGameLinkLabel)
             {

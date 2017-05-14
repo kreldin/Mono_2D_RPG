@@ -8,6 +8,8 @@ namespace XRpgLibrary.Controls
 {
     public class LeftRightSelector : Control
     {
+        private int _selectedIndex;
+
         public event EventHandler SelectionChanged;
 
         private Texture2D LeftTexture { get; }
@@ -16,13 +18,16 @@ namespace XRpgLibrary.Controls
         private int MaxItemWidth { get; set; }
 
         public List<string> Items { get; } = new List<string>();
-        public int SelectedItem { get; private set; }
+
         public Color SelectedColor { get; set; } = Color.Red;
+
         public int SelectedIndex
         {
-            get => SelectedItem;
-            set => SelectedItem = (int) MathHelper.Clamp(value, 0.0f, Items.Count);
+            get => _selectedIndex;
+            set => _selectedIndex = MathHelper.Clamp(value, 0, Items.Count);
         }
+
+        public string SelectedItem => Items[SelectedIndex];
 
         public LeftRightSelector(Texture2D leftArrow, Texture2D rightArrow, Texture2D stop)
         {
@@ -53,20 +58,20 @@ namespace XRpgLibrary.Controls
         {
             var drawTo = Position;
 
-            spriteBatch.Draw(SelectedItem != 0 ? LeftTexture : StopTexture, drawTo, Color.White);
+            spriteBatch.Draw(SelectedIndex != 0 ? LeftTexture : StopTexture, drawTo, Color.White);
 
             drawTo.X += LeftTexture.Width + 5.0f;
 
-            var itemWidth = SpriteFont.MeasureString(Items[SelectedItem]).X;
+            var itemWidth = SpriteFont.MeasureString(Items[SelectedIndex]).X;
             var offset = (MaxItemWidth - itemWidth) / 2;
 
             drawTo.X += offset;
 
-            spriteBatch.DrawString(SpriteFont, Items[SelectedItem], drawTo, HasFocus ? SelectedColor : Color);
+            spriteBatch.DrawString(SpriteFont, Items[SelectedIndex], drawTo, HasFocus ? SelectedColor : Color);
 
             drawTo.X += (-1 * offset) + MaxItemWidth + 5.0f;
 
-            spriteBatch.Draw(SelectedItem != (Items.Count - 1) ? RightTexture : StopTexture, drawTo, Color.White);
+            spriteBatch.Draw(SelectedIndex != (Items.Count - 1) ? RightTexture : StopTexture, drawTo, Color.White);
         }
 
         public override void HandleInput(PlayerIndex playerIndex)
@@ -80,10 +85,10 @@ namespace XRpgLibrary.Controls
                 InputHandler.IsButtonReleased(Buttons.DPadLeft, playerIndex) ||
                 InputHandler.IsKeyReleased(Keys.Left))
             {
-                SelectedItem--;
-                if (SelectedItem < 0)
+                _selectedIndex--;
+                if (_selectedIndex < 0)
                 {
-                    SelectedItem = 0;
+                    _selectedIndex = 0;
                 }
 
                 OnSelectionChanged();
@@ -92,10 +97,10 @@ namespace XRpgLibrary.Controls
                 InputHandler.IsButtonReleased(Buttons.DPadRight, playerIndex) ||
                 InputHandler.IsKeyReleased(Keys.Right))
             {
-                SelectedItem++;
-                if (SelectedItem >= Items.Count)
+                _selectedIndex++;
+                if (_selectedIndex >= Items.Count)
                 {
-                    SelectedItem = Items.Count - 1;
+                    _selectedIndex = Items.Count - 1;
                 }
 
                 OnSelectionChanged();

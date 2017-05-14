@@ -23,7 +23,8 @@ namespace MonoExplorerBoy.GameScreens
 
         protected override void LoadContent()
         {
-            var spriteSheet = Game.Content.Load<Texture2D>(@"Sprites/PlayerSprites/malefighter");
+            var spriteSheet = Game.Content.Load<Texture2D>(@"Sprites\PlayerSprites\" + 
+                GameRef.CharacterGeneratorScreen.SelectedGender.ToLower() + GameRef.CharacterGeneratorScreen.SelectedClass.ToLower());
             var animationDown = new Animation(3, 32, 32, 0, 0);
             var animationLeft = new Animation(3, 32, 32, 0, 32);
             var animationRight = new Animation(3, 32, 32, 0, 64);
@@ -49,7 +50,7 @@ namespace MonoExplorerBoy.GameScreens
 
             var tilesets = new List<Tileset> {tileset1, tileset2};
 
-            var layer = new MapLayer(40, 40);
+            var layer = new MapLayer(100, 100);
 
             for (var y = 0; y < layer.Height; y++)
             {
@@ -61,13 +62,13 @@ namespace MonoExplorerBoy.GameScreens
                 }
             }
 
-            var splatter = new MapLayer(40, 40);
+            var splatter = new MapLayer(100, 100);
             var random = new Random();
 
-            for (var i = 0; i < 80; i++)
+            for (var i = 0; i < 100; i++)
             {
-                var x = random.Next(0, 40);
-                var y = random.Next(0, 40);
+                var x = random.Next(0, 100);
+                var y = random.Next(0, 100);
                 var index = random.Next(2, 14);
 
                 var tile = new Tile(index, 0);
@@ -87,6 +88,25 @@ namespace MonoExplorerBoy.GameScreens
         {
             Player.Update(gameTime);
             Sprite.Update(gameTime);
+
+            if (InputHandler.IsKeyReleased(Keys.PageUp) ||
+                InputHandler.IsButtonReleased(Buttons.LeftShoulder, PlayerIndex.One))
+            {
+                Player.Camera.ZoomIn();
+                if (Player.Camera.Mode == CameraMode.Follow)
+                {
+                    Player.Camera.LockToSprite(Sprite);
+                }
+            }
+            else if (InputHandler.IsKeyReleased(Keys.PageDown) ||
+                     InputHandler.IsButtonReleased(Buttons.RightShoulder, PlayerIndex.One))
+            {
+                Player.Camera.ZoomOut();
+                if (Player.Camera.Mode == CameraMode.Follow)
+                {
+                    Player.Camera.LockToSprite(Sprite);
+                }
+            }
 
             var motion = new Vector2();
 
@@ -124,7 +144,7 @@ namespace MonoExplorerBoy.GameScreens
                 Sprite.Position += motion * Sprite.Speed;
                 Sprite.LockToMap();
 
-                if (Player.Camera.Mode == Camera.CameraMode.Follow)
+                if (Player.Camera.Mode == CameraMode.Follow)
                 {
                     Player.Camera.LockToSprite(Sprite);
                 }
@@ -138,13 +158,13 @@ namespace MonoExplorerBoy.GameScreens
                 InputHandler.IsButtonReleased(Buttons.RightStick, PlayerIndex.One))
             {
                 Player.Camera.ToggleCameraMode();
-                if (Player.Camera.Mode == Camera.CameraMode.Follow)
+                if (Player.Camera.Mode == CameraMode.Follow)
                 {
                     Player.Camera.LockToSprite(Sprite);
                 }
             }
 
-            if (Player.Camera.Mode != Camera.CameraMode.Follow)
+            if (Player.Camera.Mode != CameraMode.Follow)
             {
                 if (InputHandler.IsKeyReleased(Keys.C) ||
                     InputHandler.IsButtonReleased(Buttons.LeftStick, PlayerIndex.One))
@@ -159,11 +179,11 @@ namespace MonoExplorerBoy.GameScreens
         public override void Draw(GameTime gameTime)
         {
             GameRef.SpriteBatch.Begin(
-                SpriteSortMode.Immediate,
+                SpriteSortMode.Deferred,
                 BlendState.AlphaBlend,
                 SamplerState.PointClamp,
                 null, null, null,
-                Matrix.Identity);
+                Player.Camera.Transformation);
 
             Map.Draw(GameRef.SpriteBatch, Player.Camera);
             Sprite.Draw(gameTime, GameRef.SpriteBatch, Player.Camera);

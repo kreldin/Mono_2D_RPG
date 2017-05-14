@@ -62,7 +62,7 @@ namespace XRpgLibrary.SpriteClasses
         {
             spriteBatch.Draw(
                 Texture,
-                Position - camera.Position,
+                Position,
                 Animations[CurrentAnimation].CurrentFrameRect,
                 Color.White);
         }

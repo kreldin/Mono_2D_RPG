@@ -62,6 +62,13 @@
     <Compile Include="TileEngine\Tile.cs" />
     <Compile Include="TileEngine\TileMap.cs" />
     <Compile Include="TileEngine\Tileset.cs" />
+    <Compile Include="World\World.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RpgLibrary\RpgLibrary.csproj">
+      <Project>{ADD18B9E-5E3A-459B-93C1-574F18E8D3DB}</Project>
+      <Name>RpgLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

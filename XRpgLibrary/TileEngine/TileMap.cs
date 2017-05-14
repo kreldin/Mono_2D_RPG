@@ -59,7 +59,7 @@ namespace XRpgLibrary.TileEngine
             {
                 for (var y = 0; y < layer.Height; y++)
                 {
-                    destination.Y = (y * Engine.TileHeight) - (int) camera.Position.Y;
+                    destination.Y = y * Engine.TileHeight;
 
                     for (var x = 0; x < layer.Width; x++)
                     {
@@ -70,7 +70,7 @@ namespace XRpgLibrary.TileEngine
                             continue;
                         }
 
-                        destination.X = (x * Engine.TileWidth) - (int) camera.Position.X;
+                        destination.X = x * Engine.TileWidth;
 
                         spriteBatch.Draw(
                             Tilesets[tile.Tileset].Texture,
