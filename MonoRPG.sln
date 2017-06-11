@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoRPG", "MonoExplorerBoy\MonoRPG.csproj", "{19388D96-062C-4370-820D-6FA083AEB505}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoRPG", "MonoRPG\MonoRPG.csproj", "{19388D96-062C-4370-820D-6FA083AEB505}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRpgLibrary", "XRpgLibrary\XRpgLibrary.csproj", "{58985492-131E-4D3D-B0C1-75EF96D1CFF7}"
 EndProject
