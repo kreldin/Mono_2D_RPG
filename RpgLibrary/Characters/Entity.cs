@@ -1,72 +1,75 @@
 ﻿namespace RpgLibrary.Characters
 {
     public enum EntityGender {  Male, Female, Unknown }
+    public enum EntityType   { Character, NPC, Monster, Creature }
 
-    public abstract class Entity
+    public sealed class Entity
     {
-        public string EntityType { get; }
+        private int _strength;
+        private int _dexterity;
+        private int _cunning;
+        private int _willpower;
+        private int _magic;
+        private int _constitution;
 
-        public EntityGender Gender { get; protected set; }
+        private int _strengthModifier;
+        private int _dexterityModifier;
+        private int _cunningModifier;
+        private int _willpowerModifier;
+        private int _magicModifier;
+        private int _constitutionModifier;
+
+        public string Name { get; }
+        public string Class { get; }
+        public EntityType Type { get; }
+        public EntityGender Gender { get; }
 
         public int Strength
         {
-            get => strength + strengthModifier;
-            protected set => strength = value;
+            get => _strength + _strengthModifier;
+            private set => _strength = value;
         }
 
         public int Dexterity
         {
-            get => dexterity + dexterityModifier;
-            protected set => dexterity = value;
+            get => _dexterity + _dexterityModifier;
+            private set => _dexterity = value;
         }
 
         public int Cunning
         {
-            get => cunning + cunningModifier;
-            protected set => cunning = value;
+            get => _cunning + _cunningModifier;
+            private set => _cunning = value;
         }
 
         public int Willpower
         {
-            get => willpower + willpowerModifier;
-            protected set => willpower = value;
+            get => _willpower + _willpowerModifier;
+            private set => _willpower = value;
         }
 
         public int Magic
         {
-            get => magic + magicModifier;
-            protected set => magic = value;
+            get => _magic + _magicModifier;
+            private set => _magic = value;
         }
 
         public int Constitution
         {
-            get => constitution + constitutionModifier;
-            set => constitution = value;
+            get => _constitution + _constitutionModifier;
+            private set => _constitution = value;
         }
 
         public AttributePair Health { get; } = new AttributePair(0);
         public AttributePair Stamina { get; } = new AttributePair(0);
         public AttributePair Mana { get; } = new AttributePair(0);
 
-        public int Level { get; protected set; }
-        public int Experience { get; protected set; }
+        public int Level { get; private set; }
+        public int Experience { get; private set; }
 
-        protected int strength;
-        protected int dexterity;
-        protected int cunning;
-        protected int willpower;
-        protected int magic;
-        protected int constitution;
-        protected int strengthModifier;
-        protected int dexterityModifier;
-        protected int cunningModifier;
-        protected int willpowerModifier;
-        protected int magicModifier;
-        protected int constitutionModifier;
-
-        protected int Attack { get; }
-        protected int Damage { get; }
-        protected int Defense { get; }
+        private int Attack { get; }
+        private int Damage { get; }
+        private int Defense { get; }
 
         private Entity()
         {
@@ -76,22 +79,20 @@
             Willpower = 0;
             Magic = 0;
             Constitution = 0;
-
-            Health = new AttributePair(0);
-            Stamina = new AttributePair(0);
-            Mana = new AttributePair(0);
         }
 
-        protected Entity(EntityData entityData)
+        public Entity(string name, EntityData data, EntityGender gender, EntityType type)
         {
-            EntityType = entityData.Name;
-
-            Strength = entityData.Strength;
-            Dexterity = entityData.Dexterity;
-            Cunning = entityData.Cunning;
-            Willpower = entityData.Willpower;
-            Magic = entityData.Magic;
-            Constitution = entityData.Constitution;
+            Name = name;
+            Type = type;
+            Gender = gender;
+            Class = data.Name;
+            Strength = data.Strength;
+            Dexterity = data.Dexterity;
+            Cunning = data.Cunning;
+            Willpower = data.Willpower;
+            Magic = data.Magic;
+            Constitution = data.Constitution;
         }
     }
 }

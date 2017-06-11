@@ -1,23 +1,20 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace RpgLibrary.Items
 {
     public class Weapon : BaseItem
     {
         public Hands NumberHands { get; protected set; }
-
         public int AttackValue { get; protected set; }
-
         public int AttackModifier { get; protected set; }
-
         public int DamageValue { get; protected set; }
-
         public int DamageModifier { get; protected set; }
 
-        public Weapon(string name, string type, int price, float weight,
-            Hands hands, int attackValue, int attackModifier, int damageValue, int damageModifier, 
-            params Type[] allowableClasses) : base(name, type, price, weight, allowableClasses)
+        public Weapon(
+            string name, string type, int price, float weight,
+            Hands hands, int attackValue, int attackModifier, int damageValue, 
+            int damageModifier, params string[] allowableClasses)
+            : base(name, type, price, weight, allowableClasses)
         {
             NumberHands = hands;
             AttackValue = attackValue;
@@ -28,7 +25,7 @@ namespace RpgLibrary.Items
 
         public override object Clone()
         {
-            var allowedClasses = new Type[AllowableClasses.Count];
+            var allowedClasses = new string[AllowableClasses.Count];
 
             AllowableClasses.CopyTo(allowedClasses, 0);
 
@@ -39,16 +36,15 @@ namespace RpgLibrary.Items
         {
             const string itemDivider = ", ";
             var itemString = new StringBuilder(base.ToString());
+
             itemString.Append(itemDivider).Append(NumberHands).Append(itemDivider);
             itemString.Append(AttackValue.ToString()).Append(itemDivider);
             itemString.Append(AttackModifier.ToString()).Append(itemDivider);
             itemString.Append(DamageValue.ToString()).Append(itemDivider);
             itemString.Append(DamageModifier.ToString());
 
-            foreach (var t in AllowableClasses)
-            {
-                itemString.Append(itemDivider).Append(t.Name);
-            }
+            foreach (var charClass in AllowableClasses)
+                itemString.Append(itemDivider).Append(charClass);
 
             return itemString.ToString();
         }

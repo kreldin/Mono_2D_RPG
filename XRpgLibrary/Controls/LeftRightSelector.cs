@@ -43,9 +43,7 @@ namespace XRpgLibrary.Controls
             Items.Clear();
 
             foreach (var s in items)
-            {
                 Items.Add(s);
-            }
 
             MaxItemWidth = maxWidth;
         }
@@ -77,9 +75,7 @@ namespace XRpgLibrary.Controls
         public override void HandleInput(PlayerIndex playerIndex)
         {
             if (Items.Count == 0)
-            {
                 return;
-            }
 
             if (InputHandler.IsButtonReleased(Buttons.LeftThumbstickLeft, playerIndex) ||
                 InputHandler.IsButtonReleased(Buttons.DPadLeft, playerIndex) ||
@@ -87,9 +83,7 @@ namespace XRpgLibrary.Controls
             {
                 _selectedIndex--;
                 if (_selectedIndex < 0)
-                {
                     _selectedIndex = 0;
-                }
 
                 OnSelectionChanged();
             }
@@ -99,9 +93,7 @@ namespace XRpgLibrary.Controls
             {
                 _selectedIndex++;
                 if (_selectedIndex >= Items.Count)
-                {
                     _selectedIndex = Items.Count - 1;
-                }
 
                 OnSelectionChanged();
             }

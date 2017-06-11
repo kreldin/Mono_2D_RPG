@@ -23,9 +23,7 @@ namespace XRpgLibrary
         public void PopState()
         {
             if (GameStates.Count <= 0)
-            {
                 return;
-            }
 
             RemoveState();
             DrawOrder -= DrawOrderInc;
@@ -46,9 +44,7 @@ namespace XRpgLibrary
         public void ChangeState(GameState newState)
         {
             while (GameStates.Count > 0)
-            {
                 RemoveState();
-            }
 
             newState.DrawOrder = StartDrawOrder;
             DrawOrder = StartDrawOrder;

@@ -23,9 +23,7 @@ namespace XRpgLibrary
             foreach (var gameComponent in Components)
             {
                 if (gameComponent.Enabled)
-                {
                     gameComponent.Update(gameTime);
-                }
             }
 
             base.Update(gameTime);
@@ -38,9 +36,7 @@ namespace XRpgLibrary
                 var drawableGameComponent = gameComponent as DrawableGameComponent;
 
                 if (drawableGameComponent?.Visible == true)
-                {
                     drawableGameComponent.Draw(gameTime);
-                }
             }
             base.Draw(gameTime);
         }
@@ -48,13 +44,9 @@ namespace XRpgLibrary
         protected internal virtual void StateChange(object sender, EventArgs e)
         {
             if (StateManager.CurrentState == Tag)
-            {
                 Show();
-            }
             else
-            {
                 Hide();
-            }
         }
 
         protected virtual void Show()
@@ -65,9 +57,7 @@ namespace XRpgLibrary
             {
                 gameComponent.Enabled = true;
                 if (gameComponent is DrawableGameComponent component)
-                {
                     component.Visible = true;
-                }
             }
         }
 
@@ -79,9 +69,7 @@ namespace XRpgLibrary
             {
                 gameComponent.Enabled = false;
                 if (gameComponent is DrawableGameComponent component)
-                {
                     component.Visible = false;
-                }
             }
         }
     }

@@ -19,22 +19,22 @@ namespace RpgLibrary.Items
         Feet
     }
 
-    public abstract class BaseItem
+    public abstract class BaseItem : ICloneable
     {
-        protected List<Type> AllowableClasses { get; } = new List<Type>();
+        protected List<string> AllowableClasses { get; } = new List<string>();
         
-        public string Name { get; protected set; }
-        public string Type { get; protected set; }
-        public int Price { get; protected set; }
-        public float Weight { get; protected set; }
-        public bool IsEquipped { get; protected set; }
+        public string Name { get; }
+        public string Type { get; }
+        public int Price { get; }
+        public float Weight { get; }
+        public bool IsEquipped { get; }
 
-        protected BaseItem(string name, string type, int price, float weight, params Type[] allowableClasses)
+        protected BaseItem(
+            string name, string type, int price,
+            float weight, params string[] allowableClasses)
         {
-            foreach (var t in allowableClasses)
-            {
-                AllowableClasses.Add(t);
-            }
+            foreach (var charClass in allowableClasses)
+                AllowableClasses.Add(charClass);
 
             Name = name;
             Type = type;
@@ -45,7 +45,7 @@ namespace RpgLibrary.Items
 
         public abstract object Clone();
 
-        public virtual bool CanEquip(Type characterType)
+        public bool CanEquip(string characterType)
         {
             return AllowableClasses.Contains(characterType);
         }
@@ -54,6 +54,7 @@ namespace RpgLibrary.Items
         {
             const string itemDivider = ", ";
             var itemString = new StringBuilder("");
+
             itemString.Append(Name).Append(itemDivider);
             itemString.Append(Type).Append(itemDivider);
             itemString.Append(Price.ToString()).Append(itemDivider);

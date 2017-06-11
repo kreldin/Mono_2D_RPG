@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using XRpgLibrary;
 using XRpgLibrary.Controls;
 
-namespace MonoExplorerBoy.GameScreens
+namespace MonoRPG.GameScreens
 {
     public abstract class BaseGameState : GameState
     {

@@ -27,15 +27,11 @@ namespace XRpgLibrary.Controls
         public override void HandleInput(PlayerIndex playerIndex)
         {
             if (!HasFocus)
-            {
                 return;
-            }
 
             if (InputHandler.IsKeyReleased(Keys.Enter) ||
                 InputHandler.IsButtonReleased(Buttons.A, playerIndex))
-            {
                 OnSelected(null);
-            }
         }
     }
 }

@@ -1,18 +1,18 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace RpgLibrary.Items
 {
     public class Armor : BaseItem
     {
         public ArmorLocation Location { get; protected set; }
-
         public int DefenseValue { get; protected set; }
-
         public int DefenseModifier { get; protected set; }
 
-        public Armor(string name, string type, int price, float weight,
-            ArmorLocation location, int defenseValue, int defenseModifier, params Type[] allowableClasses) : base(name, type, price, weight, allowableClasses)
+        public Armor(
+            string name, string type, int price, float weight,
+            ArmorLocation location, int defenseValue, int defenseModifier,
+            params string[] allowableClasses) 
+            : base(name, type, price, weight, allowableClasses)
         {
             Location = location;
             DefenseValue = defenseValue;
@@ -21,7 +21,7 @@ namespace RpgLibrary.Items
 
         public override object Clone()
         {
-            var allowedClasses = new Type[AllowableClasses.Count];
+            var allowedClasses = new string[AllowableClasses.Count];
 
             AllowableClasses.CopyTo(allowedClasses, 0);
 
@@ -32,14 +32,13 @@ namespace RpgLibrary.Items
         {
             const string itemDivider = ", ";
             var itemString = new StringBuilder(base.ToString());
+
             itemString.Append(itemDivider).Append(Location).Append(itemDivider);
             itemString.Append(DefenseValue.ToString()).Append(itemDivider);
             itemString.Append(DefenseModifier.ToString());
 
-            foreach (var t in AllowableClasses)
-            {
-                itemString.Append(itemDivider).Append(t.Name);
-            }
+            foreach (var charClass in AllowableClasses)
+                itemString.Append(itemDivider).Append(charClass);
 
             return itemString.ToString();
         }

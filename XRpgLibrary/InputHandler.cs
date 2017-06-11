@@ -18,9 +18,7 @@ namespace XRpgLibrary
             GamePadStates = new GamePadState[Enum.GetValues(typeof(PlayerIndex)).Length];
 
             foreach (PlayerIndex playerIndex in Enum.GetValues(typeof(PlayerIndex)))
-            {
                 GamePadStates[(int) playerIndex] = GamePad.GetState(playerIndex);
-            }
         }
 
         public override void Update(GameTime gameTime)
@@ -30,9 +28,7 @@ namespace XRpgLibrary
 
             LastGamePadStates = (GamePadState[]) GamePadStates.Clone();
             foreach(PlayerIndex playerIndex in Enum.GetValues(typeof(PlayerIndex)))
-            {
                 GamePadStates[(int) playerIndex] = GamePad.GetState(playerIndex);
-            }
 
             base.Update(gameTime);
         }

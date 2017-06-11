@@ -49,6 +49,7 @@
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\LeftRightSelector.cs" />
     <Compile Include="Controls\LinkLabel.cs" />
+    <Compile Include="Controls\ListBox.cs" />
     <Compile Include="Controls\PictureBox.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="GameStateManager.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="TileEngine\Tile.cs" />
     <Compile Include="TileEngine\TileMap.cs" />
     <Compile Include="TileEngine\Tileset.cs" />
+    <Compile Include="World\Level.cs" />
     <Compile Include="World\World.cs" />
   </ItemGroup>
   <ItemGroup>

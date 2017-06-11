@@ -63,38 +63,26 @@ namespace XRpgLibrary.TileEngine
         public void Update(GameTime gameTime)
         {
             if (Mode == CameraMode.Follow)
-            {
                 return;
-            }
 
             var motion = Vector2.Zero;
 
             if (InputHandler.IsKeyDown(Keys.Left) ||
                 InputHandler.IsButtonDown(Buttons.RightThumbstickLeft, PlayerIndex.One))
-            {
                 motion.X = -Speed;
-            }
             else if (InputHandler.IsKeyDown(Keys.Right) ||
                      InputHandler.IsButtonDown(Buttons.RightThumbstickRight, PlayerIndex.One))
-            {
                 motion.X = Speed;
-            }
 
             if (InputHandler.IsKeyDown(Keys.Up) ||
                 InputHandler.IsButtonDown(Buttons.RightThumbstickUp, PlayerIndex.One))
-            {
                 motion.Y = -Speed;
-            }
             else if (InputHandler.IsKeyDown(Keys.Down) ||
                      InputHandler.IsButtonDown(Buttons.RightThumbstickDown, PlayerIndex.One))
-            {
                 motion.Y = Speed;
-            }
 
             if (motion == Vector2.Zero)
-            {
                 return;
-            }
 
             motion.Normalize();
             Position += motion * Speed;

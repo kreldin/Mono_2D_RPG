@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoRPG.Components;
 using XRpgLibrary;
 using XRpgLibrary.Controls;
+using XRpgLibrary.SpriteClasses;
+using XRpgLibrary.TileEngine;
+using XRpgLibrary.World;
 
-namespace MonoExplorerBoy.GameScreens
+namespace MonoRPG.GameScreens
 {
     public class CharacterGeneratorScreen : BaseGameState
     {
@@ -105,18 +110,96 @@ namespace MonoExplorerBoy.GameScreens
             ControlManager.Add(CharacterPictureBox);
 
             ControlManager.NextControl();
+
+            ControlManager.AcceptInput = true;
         }
 
         private void LinkLabel_Selected(object sender, EventArgs e)
         {
             InputHandler.Flush();
-            StateManager.PopState();
-            StateManager.PushState(GameRef.GamePlayScreen);
+
+            StateManager.ChangeState(GameRef.GamePlayScreen);
+
+            CreatePlayer();
+            CreateWorld();
         }
 
         private void SelectionChanged(object sender, EventArgs e)
         {
             CharacterPictureBox.Image = CharacterImages[GenderSelector.SelectedIndex, ClassSelector.SelectedIndex];
+        }
+
+        private void CreatePlayer()
+        {
+            var animationDown = new Animation(3, 32, 32, 0, 0);
+            var animationLeft = new Animation(3, 32, 32, 0, 32);
+            var animationRight = new Animation(3, 32, 32, 0, 64);
+            var animationUp = new Animation(3, 32, 32, 0, 96);
+
+            var animations = new Dictionary<AnimationKey, Animation>
+            {
+                { AnimationKey.Down, animationDown },
+                { AnimationKey.Left, animationLeft },
+                { AnimationKey.Right, animationRight} ,
+                { AnimationKey.Up, animationUp }
+            };
+
+            var sprite = new AnimatedSprite(
+                CharacterImages[GenderSelector.SelectedIndex, ClassSelector.SelectedIndex], 
+                animations);
+
+            GamePlayScreen.Player = new Player(GameRef, sprite);
+        }
+
+        private void CreateWorld()
+        {
+            base.LoadContent();
+
+            var tilesetTexture = Game.Content.Load<Texture2D>(@"Tilesets\tileset1");
+            var tileset1 = new Tileset(tilesetTexture, 8, 8, Engine.TileWidth, Engine.TileHeight);
+
+            tilesetTexture = Game.Content.Load<Texture2D>(@"Tilesets\tileset2");
+            var tileset2 = new Tileset(tilesetTexture, 8, 8, Engine.TileWidth, Engine.TileHeight);
+
+            var tilesets = new List<Tileset> { tileset1, tileset2 };
+
+            var layer = new MapLayer(100, 100);
+
+            for (var y = 0; y < layer.Height; y++)
+            {
+                for (var x = 0; x < layer.Width; x++)
+                {
+                    var tile = new Tile(0, 0);
+
+                    layer.SetTile(x, y, tile);
+                }
+            }
+
+            var splatter = new MapLayer(100, 100);
+            var random = new Random();
+
+            for (var i = 0; i < 100; i++)
+            {
+                var x = random.Next(0, 100);
+                var y = random.Next(0, 100);
+                var index = random.Next(2, 14);
+
+                var tile = new Tile(index, 0);
+                splatter.SetTile(x, y, tile);
+            }
+
+            splatter.SetTile(1, 0, new Tile(0, 1));
+            splatter.SetTile(2, 0, new Tile(2, 1));
+            splatter.SetTile(3, 0, new Tile(0, 1));
+
+            var mapLayers = new List<MapLayer> { layer, splatter };
+
+            var map = new TileMap(tilesets, mapLayers);
+            var level = new Level(map);
+
+            GamePlayScreen.World = new World(GameRef, GameRef.ScreenRectangle);
+            GamePlayScreen.World.AddLevel(level);
+            GamePlayScreen.World.CurrentLevel = 0;
         }
     }
 }

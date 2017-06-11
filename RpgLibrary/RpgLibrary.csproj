@@ -44,10 +44,7 @@
     <Compile Include="Characters\AttributePair.cs" />
     <Compile Include="Characters\Entity.cs" />
     <Compile Include="Characters\EntityData.cs" />
-    <Compile Include="Characters\Fighter.cs" />
-    <Compile Include="Characters\Priest.cs" />
-    <Compile Include="Characters\Rogue.cs" />
-    <Compile Include="Characters\Wizard.cs" />
+    <Compile Include="EntityDataManager.cs" />
     <Compile Include="Items\BaseItem.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\ItemManager.cs" />

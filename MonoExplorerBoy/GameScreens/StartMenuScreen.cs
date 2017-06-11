@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using XRpgLibrary;
 using XRpgLibrary.Controls;
 
-namespace MonoExplorerBoy.GameScreens
+namespace MonoRPG.GameScreens
 {
     public class StartMenuScreen : BaseGameState
     {
@@ -82,18 +82,16 @@ namespace MonoExplorerBoy.GameScreens
             foreach (var c in ControlManager)
             {
                 if (!(c is LinkLabel))
-                {
                     continue;
-                }
 
                 if (c.Size.X > MaxItemWidth)
-                {
                     MaxItemWidth = c.Size.X;
-                }
 
                 c.Position = position;
                 position.Y += c.Size.Y + 5f;
             }
+
+            ControlManager.AcceptInput = true;
 
             ControlManager_FocusChanged(StartGameLinkLabel, null);
         }
@@ -102,9 +100,7 @@ namespace MonoExplorerBoy.GameScreens
         {
             var control = sender as Control;
             if (control == null)
-            {
                 return;
-            }
 
             var position = new Vector2(control.Position.X + MaxItemWidth + 10f,
                 control.Position.Y);
@@ -120,7 +116,7 @@ namespace MonoExplorerBoy.GameScreens
             }
             else if (sender == LoadGameLinkLabel)
             {
-                //StateManager.PushState(GameRef.GamePlayScreen);
+                StateManager.PushState(GameRef.LoadGameScreen);
             }
             else if (sender == ExitGameLinkLabel)
             {

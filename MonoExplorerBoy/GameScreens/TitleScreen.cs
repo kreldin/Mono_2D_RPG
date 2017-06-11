@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using XRpgLibrary;
 using XRpgLibrary.Controls;
 
-namespace MonoExplorerBoy.GameScreens
+namespace MonoRPG.GameScreens
 {
     public class TitleScreen : BaseGameState
     {
@@ -29,6 +29,8 @@ namespace MonoExplorerBoy.GameScreens
 
             GameRef.SpriteBatch.Draw(BackgroundTexture2D, GameRef.ScreenRectangle, Color.White);
 
+            ControlManager.Draw(GameRef.SpriteBatch);
+
             GameRef.SpriteBatch.End();
         }
 
@@ -50,6 +52,8 @@ namespace MonoExplorerBoy.GameScreens
             StartLinkLabel.Selected += StartLinkLabel_Selected;
 
             ControlManager.Add(StartLinkLabel);
+
+            ControlManager.AcceptInput = true;
         }
 
         private void StartLinkLabel_Selected(object sender, EventArgs e)

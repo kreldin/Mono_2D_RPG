@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoExplorerBoy
+namespace MonoRPG
 {
 #if WINDOWS || LINUX
     /// <summary>

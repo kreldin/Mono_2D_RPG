@@ -20,9 +20,7 @@
             for (var y = 0; y < Height; y++)
             {
                 for (var x = 0; x < Width; x++)
-                {
                     Map[y, x] = new Tile(0, 0);
-                }
             }
         }
 

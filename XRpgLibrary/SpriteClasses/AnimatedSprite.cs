@@ -34,9 +34,7 @@ namespace XRpgLibrary.SpriteClasses
             {
                 _velocity = value;
                 if (_velocity != Vector2.Zero)
-                {
                     _velocity.Normalize();
-                }
             }
         }
 
@@ -45,17 +43,13 @@ namespace XRpgLibrary.SpriteClasses
             Texture = texture;
 
             foreach (var key in animations.Keys)
-            {
                 Animations.Add(key, (Animation)animations[key].Clone());
-            }
         }
 
         public void Update(GameTime gameTime)
         {
             if (IsAnimating)
-            {
                 Animations[CurrentAnimation].Update(gameTime);
-            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Camera camera)

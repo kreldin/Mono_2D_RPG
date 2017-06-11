@@ -64,9 +64,7 @@ namespace XRpgLibrary.SpriteClasses
             FrameTimer += gameTime.ElapsedGameTime;
 
             if (FrameTimer < FrameLength)
-            {
                 return;
-            }
 
             FrameTimer = TimeSpan.Zero;
             CurrentFrame = (CurrentFrame + 1) % Frames.Length;

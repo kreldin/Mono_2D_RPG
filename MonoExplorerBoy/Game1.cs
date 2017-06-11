@@ -3,10 +3,10 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoExplorerBoy.GameScreens;
+using MonoRPG.GameScreens;
 using XRpgLibrary;
 
-namespace MonoExplorerBoy
+namespace MonoRPG
 {
     /// <summary>
     /// This is the main type for your game.
@@ -19,6 +19,7 @@ namespace MonoExplorerBoy
         public SpriteBatch SpriteBatch { get; set; }
         public TitleScreen TitleScreen { get; set; }
         public StartMenuScreen StartMenuScreen { get; set; }
+        public LoadGameScreen LoadGameScreen { get; set; }
         public CharacterGeneratorScreen CharacterGeneratorScreen { get; set; }
         public GamePlayScreen GamePlayScreen { get; set; }
         public Rectangle ScreenRectangle { get; }
@@ -46,6 +47,7 @@ namespace MonoExplorerBoy
             TitleScreen = new TitleScreen(this, stateManager);
             StartMenuScreen = new StartMenuScreen(this, stateManager);
             CharacterGeneratorScreen = new CharacterGeneratorScreen(this, stateManager);
+            LoadGameScreen = new LoadGameScreen(this, stateManager);
             GamePlayScreen = new GamePlayScreen(this, stateManager);
 
             stateManager.ChangeState(TitleScreen);
@@ -79,11 +81,6 @@ namespace MonoExplorerBoy
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                Exit();
-            }
-
             // TODO: Add your update logic here
 
             base.Update(gameTime);

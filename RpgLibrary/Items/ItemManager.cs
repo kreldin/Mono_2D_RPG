@@ -11,17 +11,13 @@ namespace RpgLibrary.Items
         public void AddItem(BaseItem item)
         {
             if (!ContainsItem(item.Name))
-            {
                 _items.Add(item.Name, item);
-            }
         }
 
         public BaseItem GetItem(string name)
         {
             if (ContainsItem(name))
-            {
                 return (BaseItem)_items[name].Clone();
-            }
             return null;
         }
 
