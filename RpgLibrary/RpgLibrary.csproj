@@ -50,12 +50,27 @@
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\ItemDataManager.cs" />
     <Compile Include="Items\ItemManager.cs" />
+    <Compile Include="Items\Reagent.cs" />
+    <Compile Include="Items\ReagentData.cs" />
     <Compile Include="Items\Shield.cs" />
     <Compile Include="Items\ShieldData.cs" />
     <Compile Include="Items\Weapon.cs" />
     <Compile Include="Items\WeaponData.cs" />
+    <Compile Include="Mechanics.cs" />
+    <Compile Include="Modifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolePlayingGame.cs" />
+    <Compile Include="Skills\Recipe.cs" />
+    <Compile Include="Skills\RecipeManager.cs" />
+    <Compile Include="Skills\Skill.cs" />
+    <Compile Include="Skills\SkillData.cs" />
+    <Compile Include="Skills\SkillDataManager.cs" />
+    <Compile Include="Spells\Spell.cs" />
+    <Compile Include="Spells\SpellData.cs" />
+    <Compile Include="Spells\SpellDataManager.cs" />
+    <Compile Include="Talents\Talent.cs" />
+    <Compile Include="Talents\TalentData.cs" />
+    <Compile Include="Talents\TalentDataManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

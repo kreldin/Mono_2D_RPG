@@ -9,5 +9,7 @@ namespace RpgLibrary.Items
         public Dictionary<string, ShieldData> ShieldData { get; } = new Dictionary<string, ShieldData>();
 
         public Dictionary<string, WeaponData> WeaponData { get; } = new Dictionary<string, WeaponData>();
+
+        public Dictionary<string, ReagentData> ReagentData { get; } = new Dictionary<string, ReagentData>();
     }
 }
