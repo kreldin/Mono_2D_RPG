@@ -6,7 +6,7 @@ namespace RpgEditor
 {
     public partial class FormEntityData : Form
     {
-        public EntityData Entity { get; set; }
+        public EntityData EntityData { get; set; }
 
         public FormEntityData()
         {
@@ -19,18 +19,18 @@ namespace RpgEditor
 
         private void FormEntityData_Load(object sender, EventArgs e)
         {
-            if (Entity == null)
+            if (EntityData == null)
                 return;
 
-            tbName.Text = Entity.Name;
-            mtbStrength.Text = Entity.Strength.ToString();
-            mtbDexterity.Text = Entity.Dexterity.ToString();
-            mtbCunning.Text = Entity.Cunning.ToString();
-            mtbWillpower.Text = Entity.Willpower.ToString();
-            mtbConstitution.Text = Entity.Constitution.ToString();
-            tbHealth.Text = Entity.HealthFormula;
-            tbStamina.Text = Entity.StaminaFormula;
-            tbMana.Text = Entity.MagicFormula;
+            tbName.Text = EntityData.Name;
+            mtbStrength.Text = EntityData.Strength.ToString();
+            mtbDexterity.Text = EntityData.Dexterity.ToString();
+            mtbCunning.Text = EntityData.Cunning.ToString();
+            mtbWillpower.Text = EntityData.Willpower.ToString();
+            mtbConstitution.Text = EntityData.Constitution.ToString();
+            tbHealth.Text = EntityData.HealthFormula;
+            tbStamina.Text = EntityData.StaminaFormula;
+            tbMana.Text = EntityData.MagicFormula;
         }
 
         private bool IsInvalidForm()
@@ -48,7 +48,7 @@ namespace RpgEditor
             return false;
         }
 
-        private bool CreateEntity()
+        private bool CreateEntityData()
         {
             if (!ConvertTextToVal(mtbStrength.Text, out int str, "Strength"))
                 return false;
@@ -68,7 +68,7 @@ namespace RpgEditor
             if (!ConvertTextToVal(mtbConstitution.Text, out int con, "Constitution"))
                 return false;
 
-            Entity = new EntityData(
+            EntityData = new EntityData(
                 tbName.Text,
                 str,
                 dex,
@@ -91,13 +91,13 @@ namespace RpgEditor
                 return;
             }
 
-            if (CreateEntity())
+            if (CreateEntityData())
                 Close();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            Entity = null;
+            EntityData = null;
             Close();
         }
     }

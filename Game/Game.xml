@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:RpgLibrary="RpgLibrary">
+  <Asset Type="RpgLibrary:RolePlayingGame">
+    <Name>Explorer Boy</Name>
+    <Description>The adventures of Explorer Boy and friends.</Description>
+  </Asset>
+</XnaContent>

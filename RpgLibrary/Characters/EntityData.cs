@@ -5,18 +5,18 @@ namespace RpgLibrary.Characters
 {
     public class EntityData : ICloneable
     {
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public int Strength { get; private set; }
-        public int Dexterity { get; private set; }
-        public int Cunning { get; private set; }
-        public int Willpower { get; private set; }
-        public int Magic { get; private set; }
-        public int Constitution { get; private set; }
+        public int Strength { get; set; }
+        public int Dexterity { get; set; }
+        public int Cunning { get; set; }
+        public int Willpower { get; set; }
+        public int Magic { get; set; }
+        public int Constitution { get; set; }
 
-        public string HealthFormula { get; private set; }
-        public string StaminaFormula { get; private set; }
-        public string MagicFormula { get; private set; }
+        public string HealthFormula { get; set; }
+        public string StaminaFormula { get; set; }
+        public string MagicFormula { get; set; }
 
         private EntityData()
         {
@@ -42,16 +42,16 @@ namespace RpgLibrary.Characters
             var newString = new StringBuilder();
             const string divider = ", ";
 
-            newString.Append("Name = ").Append(Name).Append(divider);
-            newString.Append("Strength = ").Append(Strength.ToString()).Append(divider);
-            newString.Append("Dexterity = ").Append(Dexterity.ToString()).Append(divider);
-            newString.Append("Cunning = ").Append(Cunning.ToString()).Append(divider);
-            newString.Append("Willpower = ").Append(Willpower.ToString()).Append(divider);
-            newString.Append("Magic = ").Append(Magic.ToString()).Append(divider);
-            newString.Append("Constitution = ").Append(Constitution.ToString()).Append(divider);
-            newString.Append("Health Formula = ").Append(HealthFormula).Append(divider);
-            newString.Append("Stamina Formula = ").Append(StaminaFormula).Append(divider);
-            newString.Append("Magic Formula = ").Append(MagicFormula);
+            newString.Append(Name).Append(divider);
+            newString.Append(Strength.ToString()).Append(divider);
+            newString.Append(Dexterity.ToString()).Append(divider);
+            newString.Append(Cunning.ToString()).Append(divider);
+            newString.Append(Willpower.ToString()).Append(divider);
+            newString.Append(Magic.ToString()).Append(divider);
+            newString.Append(Constitution.ToString()).Append(divider);
+            newString.Append(HealthFormula).Append(divider);
+            newString.Append(StaminaFormula).Append(divider);
+            newString.Append(MagicFormula);
 
             return newString.ToString();
         }

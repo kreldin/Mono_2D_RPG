@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RpgEditor
+﻿namespace RpgLibrary
 {
     public class RolePlayingGame
     {
         public string Name { get; set; }
         public string Description { get; set; }
+
+        private RolePlayingGame()
+        {
+            
+        }
 
         public RolePlayingGame(string name, string description)
         {
