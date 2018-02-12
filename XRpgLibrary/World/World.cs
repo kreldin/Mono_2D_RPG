@@ -42,9 +42,9 @@ namespace XRpgLibrary.World
             
         }
 
-        public void DrawLevel(SpriteBatch spriteBatch, Camera camera)
+        public void DrawLevel(GameTime gameTime, SpriteBatch spriteBatch, Camera camera)
         {
-            Levels[CurrentLevel].Draw(spriteBatch, camera);
+            Levels[CurrentLevel].Draw(gameTime, spriteBatch, camera);
         }
 
         public void AddLevel(Level level)

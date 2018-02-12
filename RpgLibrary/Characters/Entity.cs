@@ -1,16 +1,22 @@
-﻿namespace RpgLibrary.Characters
+﻿using System;
+using System.Collections.Generic;
+using RpgLibrary.Skills;
+using RpgLibrary.Spells;
+using RpgLibrary.Talents;
+
+namespace RpgLibrary.Characters
 {
     public enum EntityGender {  Male, Female, Unknown }
     public enum EntityType   { Character, NPC, Monster, Creature }
 
     public sealed class Entity
     {
-        private int _strength;
-        private int _dexterity;
-        private int _cunning;
-        private int _willpower;
-        private int _magic;
-        private int _constitution;
+        private int _strength = 10;
+        private int _dexterity = 10;
+        private int _cunning = 10;
+        private int _willpower = 10;
+        private int _magic = 10;
+        private int _constitution = 10;
 
         private int _strengthModifier;
         private int _dexterityModifier;
@@ -67,18 +73,21 @@
         public int Level { get; private set; }
         public int Experience { get; private set; }
 
+        public Dictionary<string, Skill> Skills { get; } = new Dictionary<string, Skill>();
+        public List<Modifier> SkillModifiers { get; } = new List<Modifier>();
+
+        public Dictionary<string, Spell> Spells { get; } = new Dictionary<string, Spell>();
+        public List<Modifier> SpellModifiers { get; } = new List<Modifier>();
+
+        public Dictionary<string, Talent> Talents { get; } = new Dictionary<string, Talent>();
+        public List<Modifier> TalentModifiers { get; } = new List<Modifier>();
+ 
         private int Attack { get; }
         private int Damage { get; }
         private int Defense { get; }
 
         private Entity()
         {
-            Strength = 0;
-            Dexterity = 0;
-            Cunning = 0;
-            Willpower = 0;
-            Magic = 0;
-            Constitution = 0;
         }
 
         public Entity(string name, EntityData data, EntityGender gender, EntityType type)
@@ -93,6 +102,18 @@
             Willpower = data.Willpower;
             Magic = data.Magic;
             Constitution = data.Constitution;
+        }
+
+        public void Update(TimeSpan elapsedTime)
+        {
+            foreach (var modifier in SkillModifiers)
+                modifier.Update(elapsedTime);
+
+            foreach (var modifier in SpellModifiers)
+                modifier.Update(elapsedTime);
+
+            foreach (var modifier in TalentModifiers)
+                modifier.Update(elapsedTime);
         }
     }
 }

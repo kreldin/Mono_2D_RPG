@@ -52,7 +52,7 @@ namespace XRpgLibrary.SpriteClasses
                 Animations[CurrentAnimation].Update(gameTime);
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Camera camera)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(
                 Texture,

@@ -45,6 +45,9 @@
     <Compile Include="Characters\Entity.cs" />
     <Compile Include="Characters\EntityData.cs" />
     <Compile Include="Characters\EntityDataManager.cs" />
+    <Compile Include="Conversations\Conversation.cs" />
+    <Compile Include="Conversations\ConversationManager.cs" />
+    <Compile Include="Conversations\ConversationNode.cs" />
     <Compile Include="Items\ArmorData.cs" />
     <Compile Include="Items\BaseItem.cs" />
     <Compile Include="Items\Armor.cs" />
@@ -59,6 +62,9 @@
     <Compile Include="Mechanics.cs" />
     <Compile Include="Modifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quests\Quest.cs" />
+    <Compile Include="Quests\QuestManager.cs" />
+    <Compile Include="Quests\QuestStep.cs" />
     <Compile Include="RolePlayingGame.cs" />
     <Compile Include="Skills\Recipe.cs" />
     <Compile Include="Skills\RecipeManager.cs" />

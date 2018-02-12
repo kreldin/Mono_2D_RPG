@@ -34,7 +34,7 @@ namespace MonoRPG.GameScreens
 
             base.Draw(gameTime);
 
-            World.DrawLevel(GameRef.SpriteBatch, Player.Camera);
+            World.DrawLevel(gameTime, GameRef.SpriteBatch, Player.Camera);
             Player.Draw(gameTime, GameRef.SpriteBatch);
 
             GameRef.SpriteBatch.End();
