@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoRPG.Components;
+using RpgLibrary.Items;
 using XRpgLibrary;
 using XRpgLibrary.Controls;
+using XRpgLibrary.Items;
 using XRpgLibrary.SpriteClasses;
 using XRpgLibrary.TileEngine;
 using XRpgLibrary.World;
@@ -18,6 +20,7 @@ namespace MonoRPG.GameScreens
         private PictureBox BackgroundPictureBox { get; set; }
         private PictureBox CharacterPictureBox { get; set; }
         private Texture2D[,] CharacterImages { get; set; }
+        private Texture2D Containers { get; set; }
 
         private string[] GenderItems { get; } = { "Male", "Female" };
         private string[] ClassItems { get; } = { "Fighter", "Wizard", "Rogue", "Priest" };
@@ -52,6 +55,7 @@ namespace MonoRPG.GameScreens
 
             LoadImages();
             CreateControls();
+            Containers = Game.Content.Load<Texture2D>(@"ObjectSprites\containers");
         }
 
         private void LoadImages()
@@ -196,6 +200,27 @@ namespace MonoRPG.GameScreens
 
             var map = new TileMap(tilesets, mapLayers);
             var level = new Level(map);
+
+            var chestData = new ChestData
+            {
+                Name = "Some Chest",
+                MinGold = 10,
+                MaxGold = 101
+            };
+
+            var chest = new Chest(chestData);
+
+            var chestSprite = new BaseSprite(
+                Containers,
+                new Rectangle(0, 0, 32, 32),
+                new Point(10,10));
+
+
+            var itemSprite = new ItemSprite(
+                chest,
+                chestSprite);
+
+            level.Chests.Add(itemSprite);
 
             GamePlayScreen.World = new World(GameRef, GameRef.ScreenRectangle);
             GamePlayScreen.World.AddLevel(level);

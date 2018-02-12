@@ -32,7 +32,7 @@ namespace MonoRPG.Components
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            Sprite.Draw(gameTime, spriteBatch, Camera);
+            Sprite.Draw(gameTime, spriteBatch);
         }
 
         private void HandleInput()
