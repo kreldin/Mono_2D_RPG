@@ -60,6 +60,18 @@
     <Compile Include="FormArmorDetails.Designer.cs">
       <DependentUpon>FormArmorDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormChest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChest.designer.cs">
+      <DependentUpon>FormChest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChestDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChestDetails.designer.cs">
+      <DependentUpon>FormChestDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormClasses.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +89,18 @@
     </Compile>
     <Compile Include="FormEntityData.Designer.cs">
       <DependentUpon>FormEntityData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKey.Designer.cs">
+      <DependentUpon>FormKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormKeyDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKeyDetails.Designer.cs">
+      <DependentUpon>FormKeyDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -123,6 +147,12 @@
     <EmbeddedResource Include="FormArmorDetails.resx">
       <DependentUpon>FormArmorDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormChest.resx">
+      <DependentUpon>FormChest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChestDetails.resx">
+      <DependentUpon>FormChestDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormClasses.resx">
       <DependentUpon>FormClasses.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +161,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEntityData.resx">
       <DependentUpon>FormEntityData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKey.resx">
+      <DependentUpon>FormKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKeyDetails.resx">
+      <DependentUpon>FormKeyDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

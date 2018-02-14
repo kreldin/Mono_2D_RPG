@@ -55,6 +55,8 @@
     <Compile Include="Items\ChestData.cs" />
     <Compile Include="Items\ItemDataManager.cs" />
     <Compile Include="Items\ItemManager.cs" />
+    <Compile Include="Items\Key.cs" />
+    <Compile Include="Items\KeyData.cs" />
     <Compile Include="Items\Reagent.cs" />
     <Compile Include="Items\ReagentData.cs" />
     <Compile Include="Items\Shield.cs" />

@@ -40,6 +40,8 @@
             this.weaponToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.armorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shieldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +50,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gameToolStripMenuItem,
             this.classesToolStripMenuItem,
-            this.itemsToolStripMenuItem});
+            this.itemsToolStripMenuItem,
+            this.keysToolStripMenuItem,
+            this.chestsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(913, 24);
@@ -106,9 +110,9 @@
             // itemsToolStripMenuItem
             // 
             this.itemsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                this.weaponToolStripMenuItem,
-                this.armorToolStripMenuItem,
-                this.shieldToolStripMenuItem});
+            this.weaponToolStripMenuItem,
+            this.armorToolStripMenuItem,
+            this.shieldToolStripMenuItem});
             this.itemsToolStripMenuItem.Enabled = false;
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
             this.itemsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
@@ -117,20 +121,34 @@
             // weaponToolStripMenuItem
             // 
             this.weaponToolStripMenuItem.Name = "weaponToolStripMenuItem";
-            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.weaponToolStripMenuItem.Text = "&Weapon";
             // 
             // armorToolStripMenuItem
             // 
             this.armorToolStripMenuItem.Name = "armorToolStripMenuItem";
-            this.armorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.armorToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.armorToolStripMenuItem.Text = "&Armor";
             // 
             // shieldToolStripMenuItem
             // 
             this.shieldToolStripMenuItem.Name = "shieldToolStripMenuItem";
-            this.shieldToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.shieldToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.shieldToolStripMenuItem.Text = "&Shield";
+            // 
+            // keysToolStripMenuItem
+            // 
+            this.keysToolStripMenuItem.Enabled = false;
+            this.keysToolStripMenuItem.Name = "keysToolStripMenuItem";
+            this.keysToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.keysToolStripMenuItem.Text = "&Keys";
+            // 
+            // chestsToolStripMenuItem
+            // 
+            this.chestsToolStripMenuItem.Enabled = false;
+            this.chestsToolStripMenuItem.Name = "chestsToolStripMenuItem";
+            this.chestsToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.chestsToolStripMenuItem.Text = "C&hests";
             // 
             // FormMain
             // 
@@ -166,6 +184,8 @@
         private System.Windows.Forms.ToolStripMenuItem weaponToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem armorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem shieldToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem keysToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chestsToolStripMenuItem;
     }
 }
 

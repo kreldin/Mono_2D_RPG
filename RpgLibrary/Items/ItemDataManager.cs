@@ -11,5 +11,9 @@ namespace RpgLibrary.Items
         public Dictionary<string, WeaponData> WeaponData { get; } = new Dictionary<string, WeaponData>();
 
         public Dictionary<string, ReagentData> ReagentData { get; } = new Dictionary<string, ReagentData>();
+
+        public Dictionary<string, KeyData> KeyData { get; } = new Dictionary<string, KeyData>();
+
+        public Dictionary<string, ChestData> ChestData { get; } = new Dictionary<string, ChestData>();
     }
 }

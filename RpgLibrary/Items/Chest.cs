@@ -37,11 +37,13 @@ namespace RpgLibrary.Items
             var data = new ChestData
             {
                 Name = _chestData.Name,
+                DifficultyLevel = _chestData.DifficultyLevel,
                 IsLocked = _chestData.IsLocked,
                 IsTrapped = _chestData.IsTrapped,
-                TextureName = _chestData.TextureName,
                 TrapName = _chestData.TrapName,
                 KeyName = _chestData.KeyName,
+                KeyType = _chestData.KeyType,
+                KeysRequired = _chestData.KeysRequired,
                 MinGold = _chestData.MinGold,
                 MaxGold = _chestData.MaxGold
             };
