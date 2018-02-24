@@ -12,7 +12,7 @@ namespace XRpgLibrary.Controls
 
         private int SelectedControl { get; set; }
 
-        public bool AcceptInput { get; set; }
+        public bool AcceptInput { get; set; } = true;
 
         public static SpriteFont SpriteFont { get; private set; }
 

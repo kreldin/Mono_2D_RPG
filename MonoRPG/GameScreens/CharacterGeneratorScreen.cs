@@ -122,10 +122,11 @@ namespace MonoRPG.GameScreens
         {
             InputHandler.Flush();
 
-            StateManager.ChangeState(GameRef.GamePlayScreen);
-
             CreatePlayer();
             CreateWorld();
+
+            GameRef.SkillScreen.SkillPoints = 25;
+            StateManager.ChangeState(GameRef.SkillScreen);
         }
 
         private void SelectionChanged(object sender, EventArgs e)

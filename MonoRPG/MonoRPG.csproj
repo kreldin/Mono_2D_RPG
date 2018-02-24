@@ -51,6 +51,7 @@
     <Compile Include="GameScreens\CharacterGeneratorScreen.cs" />
     <Compile Include="GameScreens\GamePlayScreen.cs" />
     <Compile Include="GameScreens\LoadGameScreen.cs" />
+    <Compile Include="GameScreens\SkillScreen.cs" />
     <Compile Include="GameScreens\StartMenuScreen.cs" />
     <Compile Include="GameScreens\TitleScreen.cs" />
     <Compile Include="Program.cs" />

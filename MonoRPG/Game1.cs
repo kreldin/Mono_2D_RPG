@@ -22,6 +22,7 @@ namespace MonoRPG
         public LoadGameScreen LoadGameScreen { get; set; }
         public CharacterGeneratorScreen CharacterGeneratorScreen { get; set; }
         public GamePlayScreen GamePlayScreen { get; set; }
+        public SkillScreen SkillScreen { get; set; }
         public Rectangle ScreenRectangle { get; }
 
         public GraphicsDeviceManager Graphics { get; }
@@ -49,6 +50,7 @@ namespace MonoRPG
             CharacterGeneratorScreen = new CharacterGeneratorScreen(this, stateManager);
             LoadGameScreen = new LoadGameScreen(this, stateManager);
             GamePlayScreen = new GamePlayScreen(this, stateManager);
+            SkillScreen = new SkillScreen(this, stateManager);
 
             stateManager.ChangeState(TitleScreen);
         }
