@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\RpgLibrary\bin\Debug\RpgLibrary.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -211,4 +212,239 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:ObjectSprites/containers.png
+
+#begin Game/Chests/Big Gold Chest.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Chests/Big Gold Chest.xml
+
+#begin Game/Chests/Broken Crate.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Chests/Broken Crate.xml
+
+#begin Game/Chests/Gold Chest.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Chests/Gold Chest.xml
+
+#begin Game/Chests/Plain Chest.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Chests/Plain Chest.xml
+
+#begin Game/Chests/Rusty Chest.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Chests/Rusty Chest.xml
+
+#begin Game/Classes/Fighter.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Classes/Fighter.xml
+
+#begin Game/Classes/Priest.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Classes/Priest.xml
+
+#begin Game/Classes/Rogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Classes/Rogue.xml
+
+#begin Game/Classes/Wizard.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Classes/Wizard.xml
+
+#begin Game/Items/Armor/Chain Mail Boots.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Chain Mail Boots.xml
+
+#begin Game/Items/Armor/Chain Mail Gloves.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Chain Mail Gloves.xml
+
+#begin Game/Items/Armor/Chain Mail Helm.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Chain Mail Helm.xml
+
+#begin Game/Items/Armor/Chain Mail.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Chain Mail.xml
+
+#begin Game/Items/Armor/Leather Armor.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Leather Armor.xml
+
+#begin Game/Items/Armor/Leather Boots.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Leather Boots.xml
+
+#begin Game/Items/Armor/Leather Gloves.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Leather Gloves.xml
+
+#begin Game/Items/Armor/Leather Helm.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Leather Helm.xml
+
+#begin Game/Items/Armor/Light Robes.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Light Robes.xml
+
+#begin Game/Items/Armor/Medium Robes.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Medium Robes.xml
+
+#begin Game/Items/Armor/Studded Leather Armor.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Studded Leather Armor.xml
+
+#begin Game/Items/Armor/Studded Leather Boots.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Studded Leather Boots.xml
+
+#begin Game/Items/Armor/Studded Leather Gloves.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Studded Leather Gloves.xml
+
+#begin Game/Items/Armor/Studded Leather Helm.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Armor/Studded Leather Helm.xml
+
+#begin Game/Items/Shield/Heavy Tower Shield.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Shield/Heavy Tower Shield.xml
+
+#begin Game/Items/Shield/Large Kite Shield.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Shield/Large Kite Shield.xml
+
+#begin Game/Items/Shield/Large Metal Shield.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Shield/Large Metal Shield.xml
+
+#begin Game/Items/Shield/Large Wooden Shield.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Shield/Large Wooden Shield.xml
+
+#begin Game/Items/Shield/Medium Metal Shield.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Shield/Medium Metal Shield.xml
+
+#begin Game/Items/Shield/Medium Wooden Shield.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Shield/Medium Wooden Shield.xml
+
+#begin Game/Items/Shield/Small Metal Shield.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Shield/Small Metal Shield.xml
+
+#begin Game/Items/Shield/Small Wooded Shield.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Shield/Small Wooded Shield.xml
+
+#begin Game/Items/Weapon/Acolyte Staff.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Acolyte Staff.xml
+
+#begin Game/Items/Weapon/Apprentice Staff.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Apprentice Staff.xml
+
+#begin Game/Items/Weapon/Battle Axe.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Battle Axe.xml
+
+#begin Game/Items/Weapon/Broad Sword.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Broad Sword.xml
+
+#begin Game/Items/Weapon/Club.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Club.xml
+
+#begin Game/Items/Weapon/Dagger.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Dagger.xml
+
+#begin Game/Items/Weapon/Flail.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Flail.xml
+
+#begin Game/Items/Weapon/Great Sword.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Great Sword.xml
+
+#begin Game/Items/Weapon/Halberd.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Halberd.xml
+
+#begin Game/Items/Weapon/Long Sword.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Long Sword.xml
+
+#begin Game/Items/Weapon/Mace.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Mace.xml
+
+#begin Game/Items/Weapon/Short Sword.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/Short Sword.xml
+
+#begin Game/Items/Weapon/War Axe.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Items/Weapon/War Axe.xml
+
+#begin Game/Keys/Golden Key.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Keys/Golden Key.xml
+
+#begin Game/Keys/Rusty Key.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Keys/Rusty Key.xml
+
+#begin Game/Game.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Game.xml
 

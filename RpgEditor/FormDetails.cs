@@ -71,6 +71,27 @@ namespace RpgEditor
                     ItemDataManager.WeaponData[s]);
             }
         }
+
+        public static void WriteKeyData()
+        {
+            foreach (var s in ItemDataManager.KeyData.Keys)
+            {
+                XmlSerializer.Serialize(
+                    FormMain.KeyPath + @"\" + s + ".xml",
+                    ItemDataManager.KeyData[s]);
+            }
+        }
+
+        public static void WriteChestData()
+        {
+            foreach (var s in ItemDataManager.ChestData.Keys)
+            {
+                XmlSerializer.Serialize(
+                    FormMain.ChestPath + @"\" + s + ".xml",
+                    ItemDataManager.ChestData[s]);
+            }
+        }
+
         public static void ReadEntityData()
         {
             EntityDataManager = new EntityDataManager();
@@ -117,7 +138,30 @@ namespace RpgEditor
                 var weaponData = XmlSerializer.Deserialize<WeaponData>(s);
                 ItemDataManager.WeaponData.Add(weaponData.Name, weaponData);
             }
+        }
 
+        public static void ReadKeyData()
+        {
+            var fileNames = Directory.GetFiles(FormMain.KeyPath, "*.xml");
+
+            foreach (var s in fileNames)
+            {
+                var keyData = XmlSerializer.Deserialize<KeyData>(s);
+
+                ItemDataManager.KeyData.Add(keyData.Name, keyData);
+            }
+        }
+
+        public static void ReadChestData()
+        {
+            var fileNames = Directory.GetFiles(FormMain.ChestPath, "*.xml");
+
+            foreach (var s in fileNames)
+            {
+                var chestData = XmlSerializer.Deserialize<ChestData>(s);
+
+                ItemDataManager.ChestData.Add(chestData.Name, chestData);
+            }
         }
     }
 }

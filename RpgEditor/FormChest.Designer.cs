@@ -30,16 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // lbDetails
-            // 
-            this.lbDetails.ItemHeight = 16;
-            // 
             // FormChest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 458);
-            this.MinimizeBox = false;
+            this.ClientSize = new System.Drawing.Size(1021, 601);
+            this.MaximizeBox = false;
             this.Name = "FormChest";
             this.Text = "Chests";
             this.ResumeLayout(false);

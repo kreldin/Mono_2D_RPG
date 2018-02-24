@@ -201,12 +201,7 @@ namespace MonoRPG.GameScreens
             var map = new TileMap(tilesets, mapLayers);
             var level = new Level(map);
 
-            var chestData = new ChestData
-            {
-                Name = "Some Chest",
-                MinGold = 10,
-                MaxGold = 101
-            };
+            var chestData = Game.Content.Load<ChestData>(@"Game\Chests\Plain Chest");
 
             var chest = new Chest(chestData);
 

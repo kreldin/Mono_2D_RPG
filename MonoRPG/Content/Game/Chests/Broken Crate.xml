@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Items="RpgLibrary.Items">
+  <Asset Type="Items:ChestData">
+    <Name>Broken Crate</Name>
+    <IsTrapped>false</IsTrapped>
+    <IsLocked>false</IsLocked>
+    <TrapName Null="true" />
+    <KeyName Null="true" />
+    <KeyType Null="true" />
+    <KeysRequired>0</KeysRequired>
+    <MinGold>5</MinGold>
+    <MaxGold>10</MaxGold>
+    <ItemCollection />
+    <DifficultyLevel>Normal</DifficultyLevel>
+  </Asset>
+</XnaContent>
