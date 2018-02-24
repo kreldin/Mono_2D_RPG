@@ -17,6 +17,7 @@ namespace MonoRPG.GameScreens
 
         public StartMenuScreen(Game game, GameStateManager manager) : base(game, manager)
         {
+            // Test constructor 
         }
 
         public override void Update(GameTime gameTime)
