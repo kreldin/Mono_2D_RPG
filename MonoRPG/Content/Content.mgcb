@@ -448,3 +448,23 @@
 /processor:PassThroughProcessor
 /build:Game/Game.xml
 
+#begin Game/Skills/Bartering.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Skills/Bartering.xml
+
+#begin Game/Skills/Herbalism.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Skills/Herbalism.xml
+
+#begin Game/Skills/Poison Making.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Skills/Poison Making.xml
+
+#begin Game/Skills/Trap Making.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Game/Skills/Trap Making.xml
+

@@ -42,6 +42,7 @@
             this.shieldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.keysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skillsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +53,8 @@
             this.classesToolStripMenuItem,
             this.itemsToolStripMenuItem,
             this.keysToolStripMenuItem,
-            this.chestsToolStripMenuItem});
+            this.chestsToolStripMenuItem,
+            this.skillsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(913, 24);
@@ -150,6 +152,13 @@
             this.chestsToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.chestsToolStripMenuItem.Text = "C&hests";
             // 
+            // skillsToolStripMenuItem
+            // 
+            this.skillsToolStripMenuItem.Enabled = false;
+            this.skillsToolStripMenuItem.Name = "skillsToolStripMenuItem";
+            this.skillsToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.skillsToolStripMenuItem.Text = "&Skills";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,6 +195,7 @@
         private System.Windows.Forms.ToolStripMenuItem shieldToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem keysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chestsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem skillsToolStripMenuItem;
     }
 }
 

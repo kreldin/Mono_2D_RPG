@@ -126,6 +126,18 @@
     <Compile Include="FormShieldDetails.Designer.cs">
       <DependentUpon>FormShieldDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSkill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSkill.designer.cs">
+      <DependentUpon>FormSkill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSkillDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSkillDetails.designer.cs">
+      <DependentUpon>FormSkillDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWeapon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormShieldDetails.resx">
       <DependentUpon>FormShieldDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSkill.resx">
+      <DependentUpon>FormSkill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSkillDetails.resx">
+      <DependentUpon>FormSkillDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWeapon.resx">
       <DependentUpon>FormWeapon.cs</DependentUpon>

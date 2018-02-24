@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using RpgLibrary.Characters;
 using RpgLibrary.Items;
+using RpgLibrary.Skills;
 
 namespace RpgEditor
 {
@@ -9,6 +10,7 @@ namespace RpgEditor
     {
         public static ItemDataManager ItemDataManager { get; protected set; }
         public static EntityDataManager EntityDataManager { get; protected set; }
+        public static SkillDataManager SkillDataManager { get; protected set; }
 
         public FormDetails()
         {
@@ -92,6 +94,16 @@ namespace RpgEditor
             }
         }
 
+        public static void WriteSkillData()
+        {
+            foreach (var s in SkillDataManager.SkillData.Keys)
+            {
+                XmlSerializer.Serialize(
+                    FormMain.SkillPath + @"\" + s + ".xml",
+                    SkillDataManager.SkillData[s]);
+            }
+        }
+
         public static void ReadEntityData()
         {
             EntityDataManager = new EntityDataManager();
@@ -161,6 +173,19 @@ namespace RpgEditor
                 var chestData = XmlSerializer.Deserialize<ChestData>(s);
 
                 ItemDataManager.ChestData.Add(chestData.Name, chestData);
+            }
+        }
+
+        public static void ReadSkillData()
+        {
+            SkillDataManager = new SkillDataManager();
+
+            var fileNames = Directory.GetFiles(FormMain.SkillPath, "*.xml");
+
+            foreach (var s in fileNames)
+            {
+                var skillData = XmlSerializer.Deserialize<SkillData>(s);
+                SkillDataManager.SkillData.Add(skillData.Name, skillData);
             }
         }
     }

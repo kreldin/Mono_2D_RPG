@@ -14,12 +14,14 @@ namespace RpgEditor
         private FormWeapon WeaponForm { get; set; }
         private FormChest ChestForm { get; set; }
         private FormKey KeyForm { get; set; }
+        public FormSkill SkillForm { get; set; }
 
         public static string GamePath  { get; private set; }
         public static string ClassPath { get; private set; }
         public static string ItemPath { get; private set; }
         public static string ChestPath { get; private set; }
         public static string KeyPath { get; private set; }
+        public static string SkillPath { get; private set; }
 
         public FormMain()
         {
@@ -39,6 +41,8 @@ namespace RpgEditor
 
             keysToolStripMenuItem.Click += keysToolStripMenuItem_Click;
             chestsToolStripMenuItem.Click += chestsToolStripMenuItem_Click;
+
+            skillsToolStripMenuItem.Click += skillsToolStripMenuItem_Click;
         }
 
         private static void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -80,6 +84,7 @@ namespace RpgEditor
                     ItemPath = Path.Combine(GamePath, "Items");
                     KeyPath = Path.Combine(GamePath, "Keys");
                     ChestPath = Path.Combine(GamePath, "Chests");
+                    SkillPath = Path.Combine(GamePath, "Skills");
 
                     if (Directory.Exists(GamePath))
                         throw new Exception("Selected directory already exists.");
@@ -91,6 +96,7 @@ namespace RpgEditor
                     Directory.CreateDirectory(ItemPath + @"\Weapon");
                     Directory.CreateDirectory(KeyPath);
                     Directory.CreateDirectory(ChestPath);
+                    Directory.CreateDirectory(SkillPath);
 
                     Game = frmNewGame.Game;
                     XmlSerializer.Serialize(GamePath + @"\Game.xml", Game);
@@ -105,6 +111,7 @@ namespace RpgEditor
                 itemsToolStripMenuItem.Enabled = true;
                 keysToolStripMenuItem.Enabled = true;
                 chestsToolStripMenuItem.Enabled = true;
+                skillsToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -178,6 +185,7 @@ namespace RpgEditor
                 FormDetails.WriteItemData();
                 FormDetails.WriteChestData();
                 FormDetails.WriteKeyData();
+                FormDetails.WriteSkillData();
             }
             catch (Exception ex)
             {
@@ -254,6 +262,18 @@ namespace RpgEditor
             ChestForm.BringToFront();
         }
 
+        private void skillsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (SkillForm == null)
+                SkillForm = new FormSkill
+                {
+                    MdiParent = this
+                };
+
+            SkillForm.Show();
+            SkillForm.BringToFront();
+        }
+
         private void OpenGame(string path)
         {
             GamePath = Path.Combine(path, "Game");
@@ -261,6 +281,7 @@ namespace RpgEditor
             ItemPath = Path.Combine(GamePath, "Items");
             KeyPath = Path.Combine(GamePath, "Keys");
             ChestPath = Path.Combine(GamePath, "Chests");
+            SkillPath = Path.Combine(GamePath, "Skills");
 
             Game = XmlSerializer.Deserialize<RolePlayingGame>(
                 GamePath + @"\Game.xml");
@@ -269,6 +290,7 @@ namespace RpgEditor
             FormDetails.ReadItemData();
             FormDetails.ReadKeyData();
             FormDetails.ReadChestData();
+            FormDetails.ReadSkillData();
 
             PrepareForms();
         }
@@ -317,10 +339,16 @@ namespace RpgEditor
 
             ChestForm.FillListBox();
 
+            if (SkillForm == null)
+                SkillForm = new FormSkill { MdiParent = this };
+
+            SkillForm.FillListBox();
+
             classesToolStripMenuItem.Enabled = true;
             itemsToolStripMenuItem.Enabled = true;
             keysToolStripMenuItem.Enabled = true;
             chestsToolStripMenuItem.Enabled = true;
+            skillsToolStripMenuItem.Enabled = true;
         }
     }
 }
