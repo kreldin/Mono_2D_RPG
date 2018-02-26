@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoRPG.Components;
+using RpgLibrary.Characters;
 using RpgLibrary.Items;
 using XRpgLibrary;
+using XRpgLibrary.Characters;
 using XRpgLibrary.Controls;
 using XRpgLibrary.Items;
 using XRpgLibrary.SpriteClasses;
@@ -23,7 +25,8 @@ namespace MonoRPG.GameScreens
         private Texture2D Containers { get; set; }
 
         private string[] GenderItems { get; } = { "Male", "Female" };
-        private string[] ClassItems { get; } = { "Fighter", "Wizard", "Rogue", "Priest" };
+
+        private string[] ClassItems { get; set; }
 
         public string SelectedGender => GenderSelector.SelectedItem;
         public string SelectedClass => ClassSelector.SelectedItem;
@@ -52,6 +55,16 @@ namespace MonoRPG.GameScreens
         protected override void LoadContent()
         {
             base.LoadContent();
+
+            ClassItems = new string[DataManager.Entities.Count];
+
+            var counter = 0;
+
+            foreach (var className in DataManager.Entities.Keys)
+            {
+                ClassItems[counter] = className;
+                ++counter;
+            }
 
             LoadImages();
             CreateControls();
@@ -153,7 +166,13 @@ namespace MonoRPG.GameScreens
                 CharacterImages[GenderSelector.SelectedIndex, ClassSelector.SelectedIndex], 
                 animations);
 
-            GamePlayScreen.Player = new Player(GameRef, sprite);
+            var entity = new Entity(
+                "Kreldin",
+                DataManager.Entities["Fighter"],
+                EntityGender.Male,
+                EntityType.Character);
+
+            GamePlayScreen.Player = new Player(GameRef, new Character(entity, sprite));
         }
 
         private void CreateWorld()

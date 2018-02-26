@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using XRpgLibrary;
+using XRpgLibrary.Characters;
 using XRpgLibrary.SpriteClasses;
 using XRpgLibrary.TileEngine;
 
@@ -11,13 +12,15 @@ namespace MonoRPG.Components
     {
         private Game1 GameRef { get; }
 
-        public AnimatedSprite Sprite { get; }
+        public Character Character { get; }
+
+        public AnimatedSprite Sprite => Character.Sprite;
 
         public Camera Camera { get; set; }
 
-        public Player(Game1 game1, AnimatedSprite sprite)
+        public Player(Game1 game1, Character character)
         {
-            Sprite = sprite;
+            Character = character;
             GameRef = game1;
             Camera = new Camera(GameRef.ScreenRectangle);
         }
@@ -25,14 +28,14 @@ namespace MonoRPG.Components
         public void Update(GameTime gameTime)
         {
             Camera.Update(gameTime);
-            Sprite.Update(gameTime);
+            Character.Update(gameTime);
 
             HandleInput();
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            Sprite.Draw(gameTime, spriteBatch);
+            Character.Draw(gameTime, spriteBatch);
         }
 
         private void HandleInput()

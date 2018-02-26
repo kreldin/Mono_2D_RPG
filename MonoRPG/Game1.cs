@@ -64,7 +64,12 @@ namespace MonoRPG
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            DataManager.ReadEntityData(Content);
+            DataManager.ReadArmorData(Content);
+            DataManager.ReadChestData(Content);
+            DataManager.ReadWeaponData(Content);
+            DataManager.ReadSkillData(Content);
+            DataManager.ReadKeyData(Content);
         }
 
         /// <summary>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoRPG.Components;
+using RpgLibrary.Characters;
 using XRpgLibrary;
+using XRpgLibrary.Characters;
 using XRpgLibrary.Controls;
 using XRpgLibrary.SpriteClasses;
 using XRpgLibrary.TileEngine;
@@ -135,7 +137,13 @@ namespace MonoRPG.GameScreens
                 GameRef.Content.Load<Texture2D>(@"Sprites\PlayerSprites\malefighter"),
                 animations);
 
-            GamePlayScreen.Player = new Player(GameRef, sprite);
+            var entity = new Entity(
+                "Kreldin",
+                DataManager.Entities["Fighter"],
+                EntityGender.Male,
+                EntityType.Character);
+
+            GamePlayScreen.Player = new Player(GameRef, new Character(entity, sprite));
         }
 
         private void CreateWorld()
