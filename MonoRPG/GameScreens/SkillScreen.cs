@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using RpgLibrary.Skills;
 using XRpgLibrary;
+using XRpgLibrary.Characters;
 using XRpgLibrary.Controls;
 
 namespace MonoRPG.GameScreens
@@ -16,12 +17,16 @@ namespace MonoRPG.GameScreens
     internal class SkillLabelSet
     {
         internal Label Label;
+        internal Label SkillLabel;
         internal LinkLabel LinkLabel;
+        internal int SkillValue;
 
-        internal SkillLabelSet(Label label, LinkLabel linkLabel)
+        internal SkillLabelSet(Label label, Label skillLabel, LinkLabel linkLabel)
         {
             Label = label;
+            SkillLabel = skillLabel;
             LinkLabel = linkLabel;
+            SkillValue = 0;
         }
     }
 
@@ -30,12 +35,14 @@ namespace MonoRPG.GameScreens
         private int _skillPoints;
         private int _unassignedPoints;
 
-        private PictureBox _backgroundImage;
-        private Label _pointsRemaining;
+        private PictureBox BackgroundImage { get; set; }
+        private Label PointsRemaining { get; set; }
 
-        private readonly List<SkillLabelSet> _skillLabels = new List<SkillLabelSet>();
+        private Character Target { get; set; }
 
-        private readonly Stack<string> _undoSkillStack = new Stack<string>();
+        private List<SkillLabelSet> SkillLabels { get; }= new List<SkillLabelSet>();
+
+        private Stack<string> UndoSkillStack { get; } = new Stack<string>();
 
         private EventHandler _linkLabelEventHandler;
 
@@ -59,31 +66,22 @@ namespace MonoRPG.GameScreens
         {
             base.LoadContent();
 
-            var Content = GameRef.Content;
+            var content = GameRef.Content;
 
-            CreateControls(Content);
+            CreateControls(content);
         }
 
         private void CreateControls(ContentManager content)
         {
-            _backgroundImage = new PictureBox(
+            BackgroundImage = new PictureBox(
                 Game.Content.Load<Texture2D>(@"Backgrounds\titlescreen"),
                 GameRef.ScreenRectangle);
 
-            ControlManager.Add(_backgroundImage);
-
-            var skillPath = content.RootDirectory + @"\Game\Skills\";
-            var skillFiles = Directory.GetFiles(skillPath, "*.xnb");
-
-            for (var i = 0; i < skillFiles.Length; ++i)
-            {
-                skillFiles[i] = @"Game\Skills\" +
-                                Path.GetFileNameWithoutExtension(skillFiles[i]);
-            }
+            ControlManager.Add(BackgroundImage);
 
             var nextControlPosition = new Vector2(300, 150);
 
-            _pointsRemaining = new Label
+            PointsRemaining = new Label
             {
                 Text = "Skill Points: " + _unassignedPoints,
                 Position = nextControlPosition
@@ -91,9 +89,9 @@ namespace MonoRPG.GameScreens
 
             nextControlPosition.Y += ControlManager.SpriteFont.LineSpacing + 10f;
 
-            ControlManager.Add(_pointsRemaining);
+            ControlManager.Add(PointsRemaining);
 
-            foreach (var s in skillFiles)
+            foreach (var s in DataManager.Skills.Keys)
             {
                 var data = content.Load<SkillData>(s);
 
@@ -104,13 +102,21 @@ namespace MonoRPG.GameScreens
                     Position = nextControlPosition
                 };
 
+                var sLabel = new Label()
+                {
+                    Text = "0",
+                    Position = new Vector2(
+                        nextControlPosition.X + 300,
+                        nextControlPosition.Y)
+                };
+                
                 var linkLabel = new LinkLabel
                 {
                     TabStop = true,
-                    Text = "+",
+                    Text = "Add",
                     Type = data.Name,
                     Position = new Vector2(
-                        nextControlPosition.X + 350,
+                        nextControlPosition.X + 390,
                         nextControlPosition.Y)
                 };
 
@@ -119,9 +125,10 @@ namespace MonoRPG.GameScreens
                 linkLabel.Selected += addSkillLabel_Selected;
 
                 ControlManager.Add(label);
+                ControlManager.Add(sLabel);
                 ControlManager.Add(linkLabel);
 
-                _skillLabels.Add(new SkillLabelSet(label, linkLabel));
+                SkillLabels.Add(new SkillLabelSet(label, sLabel, linkLabel));
             }
 
             nextControlPosition.Y += ControlManager.SpriteFont.LineSpacing + 10f;
@@ -153,20 +160,31 @@ namespace MonoRPG.GameScreens
 
         private void acceptLabel_Selected(object sender, EventArgs e)
         {
-            _undoSkillStack.Clear();
-            StateManager.ChangeState(GameRef.GamePlayScreen);
+            UndoSkillStack.Clear();
+            Transition(ChangeType.Change, GameRef.GamePlayScreen);
         }
 
         private void undoLabel_Selected(object sender, EventArgs e)
         {
             if (_unassignedPoints == _skillPoints) return;
 
-            _undoSkillStack.Pop();
+            var skillName = UndoSkillStack.Peek();
 
-            _unassignedPoints++;
+            UndoSkillStack.Pop();
+
+            ++_unassignedPoints;
+
+            foreach (var set in SkillLabels)
+            {
+                if (set.LinkLabel.Type != skillName) continue;
+
+                --set.SkillValue;
+                set.SkillLabel.Text = set.SkillValue.ToString();
+                Target.Entity.Skills[skillName].DecreaseSkill(1);
+            }
 
             // Update the skill points for the appropriate skill
-            _pointsRemaining.Text = "Skill Points: " + _unassignedPoints;
+            PointsRemaining.Text = "Skill Points: " + _unassignedPoints;
         }
 
         private void addSkillLabel_Selected(object sender, EventArgs e)
@@ -174,11 +192,20 @@ namespace MonoRPG.GameScreens
             if (_unassignedPoints <= 0) return;
 
             var skillName = ((LinkLabel) sender).Type;
-            _undoSkillStack.Push(skillName);
+            UndoSkillStack.Push(skillName);
             --_unassignedPoints;
 
+            foreach (var set in SkillLabels)
+            {
+                if (set.LinkLabel.Type != skillName) continue;
+
+                ++set.SkillValue;
+                set.SkillLabel.Text = set.SkillValue.ToString();
+                Target.Entity.Skills[skillName].IncreaseSkill(1);
+            }
+
             // Update the skill points for the appropriate skill
-            _pointsRemaining.Text = "Skill Points: " + _unassignedPoints;
+            PointsRemaining.Text = "Skill Points: " + _unassignedPoints;
         }
 
         public override void Update(GameTime gameTime)
@@ -193,6 +220,17 @@ namespace MonoRPG.GameScreens
             base.Draw(gameTime);
             ControlManager.Draw(GameRef.SpriteBatch);
             GameRef.SpriteBatch.End();
+        }
+
+        public void SetTarget(Character character)
+        {
+            Target = character;
+
+            foreach (var set in SkillLabels)
+            {
+                set.SkillValue = Target.Entity.Skills[set.Label.Text].SkillValue;
+                set.SkillLabel.Text = set.SkillValue.ToString();
+            }
         }
     }
 }

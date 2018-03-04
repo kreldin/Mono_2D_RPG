@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 
 namespace XRpgLibrary
 {
+    public enum ChangeType { Change, Pop, Push }
+
     public class GameStateManager : GameComponent
     {
         private static int StartDrawOrder { get; } = 5000;

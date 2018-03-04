@@ -100,14 +100,14 @@ namespace MonoRPG.GameScreens
             LoadListBox.HasFocus = false;
             ControlManager.AcceptInput = true;
 
-            StateManager.ChangeState(GameRef.GamePlayScreen);
+            Transition(ChangeType.Change, GameRef.GamePlayScreen);
             CreatePlayer();
             CreateWorld();
         }
 
         private void ExitLabel_Selected(object sender, EventArgs eventArgs)
         {
-            StateManager.PopState();
+            Transition(ChangeType.Pop, null);
         }
 
         private void LoadLabel_Selected(object sender, EventArgs e)

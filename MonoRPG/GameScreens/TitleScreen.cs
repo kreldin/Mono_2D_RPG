@@ -58,7 +58,7 @@ namespace MonoRPG.GameScreens
 
         private void StartLinkLabel_Selected(object sender, EventArgs e)
         {
-            StateManager.PushState(GameRef.StartMenuScreen);
+            Transition(ChangeType.Push, GameRef.StartMenuScreen);
         }
     }
 }

@@ -113,11 +113,11 @@ namespace MonoRPG.GameScreens
         {
             if (sender == StartGameLinkLabel)
             {
-                StateManager.PushState(GameRef.CharacterGeneratorScreen);
+                Transition(ChangeType.Push, GameRef.CharacterGeneratorScreen);
             }
             else if (sender == LoadGameLinkLabel)
             {
-                StateManager.PushState(GameRef.LoadGameScreen);
+                Transition(ChangeType.Push, GameRef.LoadGameScreen);
             }
             else if (sender == ExitGameLinkLabel)
             {

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoRPG.Components;
 using RpgLibrary.Characters;
 using RpgLibrary.Items;
+using RpgLibrary.Skills;
 using XRpgLibrary;
 using XRpgLibrary.Characters;
 using XRpgLibrary.Controls;
@@ -138,8 +139,9 @@ namespace MonoRPG.GameScreens
             CreatePlayer();
             CreateWorld();
 
-            GameRef.SkillScreen.SkillPoints = 25;
-            StateManager.ChangeState(GameRef.SkillScreen);
+            GameRef.SkillScreen.SkillPoints = 10;
+            Transition(ChangeType.Change, GameRef.SkillScreen);
+            GameRef.SkillScreen.SetTarget(GamePlayScreen.Player.Character);
         }
 
         private void SelectionChanged(object sender, EventArgs e)
@@ -166,11 +168,22 @@ namespace MonoRPG.GameScreens
                 CharacterImages[GenderSelector.SelectedIndex, ClassSelector.SelectedIndex], 
                 animations);
 
+            var gender = EntityGender.Male;
+
+            if (GenderSelector.SelectedIndex == 1)
+                gender = EntityGender.Female;
+            
             var entity = new Entity(
                 "Kreldin",
-                DataManager.Entities["Fighter"],
-                EntityGender.Male,
+                DataManager.Entities[ClassSelector.SelectedItem],
+                gender,
                 EntityType.Character);
+
+            foreach (var s in DataManager.Skills.Keys)
+            {
+                var skill = Skill.FromSkillData(DataManager.Skills[s]);
+                entity.Skills.Add(s, skill);
+            }
 
             GamePlayScreen.Player = new Player(GameRef, new Character(entity, sprite));
         }
