@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
@@ -109,29 +103,29 @@ namespace RpgEditor
         {
             lbDetails.Items.Clear();
 
-            foreach (string s in FormDetails.ItemDataManager.ChestData.Keys)
-                lbDetails.Items.Add(FormDetails.ItemDataManager.ChestData[s]);
+            foreach (var s in ItemDataManager.ChestData.Keys)
+                lbDetails.Items.Add(ItemDataManager.ChestData[s]);
         }
 
-        private void AddChest(ChestData ChestData)
+        private void AddChest(ChestData chestData)
         {
-            if (FormDetails.ItemDataManager.ChestData.ContainsKey(ChestData.Name))
+            if (ItemDataManager.ChestData.ContainsKey(chestData.Name))
             {
                 var result = MessageBox.Show(
-                    ChestData.Name + " already exists. Overwrite it?",
+                    chestData.Name + " already exists. Overwrite it?",
                     "Existing Chest",
                     MessageBoxButtons.YesNo);
 
                 if (result == DialogResult.No)
                     return;
 
-                ItemDataManager.ChestData[ChestData.Name] = ChestData;
+                ItemDataManager.ChestData[chestData.Name] = chestData;
                 FillListBox();
                 return;
             }
 
-            ItemDataManager.ChestData.Add(ChestData.Name, ChestData);
-            lbDetails.Items.Add(ChestData);
+            ItemDataManager.ChestData.Add(chestData.Name, chestData);
+            lbDetails.Items.Add(chestData);
         }
     }
 }

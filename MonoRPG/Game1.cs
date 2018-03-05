@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoRPG.GameScreens;
-using XRpgLibrary;
+using RpgLibrary;
 
 namespace MonoRPG
 {
@@ -15,6 +15,11 @@ namespace MonoRPG
     {
         private static int ScreenWidth { get; } = 1024;
         private static int ScreenHeight { get; } = 768;
+
+        private float FPS { get; set; }
+        private float UpdateInterval { get; set; } = 1.0f;
+        private float TimeSinceLastUpdate { get; set; }
+        private float FrameCount { get; set; }
 
         public SpriteBatch SpriteBatch { get; set; }
         public TitleScreen TitleScreen { get; set; }
@@ -35,6 +40,9 @@ namespace MonoRPG
                 PreferredBackBufferWidth = ScreenWidth,
                 PreferredBackBufferHeight = ScreenHeight
             };
+
+            IsFixedTimeStep = false;
+            Graphics.SynchronizeWithVerticalRetrace = false;
 
             ScreenRectangle = new Rectangle(0, 0, ScreenWidth, ScreenHeight);
 
@@ -104,6 +112,22 @@ namespace MonoRPG
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+
+            var elapsed = (float) gameTime.ElapsedGameTime.TotalSeconds;
+            ++FrameCount;
+            TimeSinceLastUpdate += elapsed;
+
+            if (!(TimeSinceLastUpdate > UpdateInterval)) return;
+
+            FPS = FrameCount / TimeSinceLastUpdate;
+#if XBOX360
+                System.Diagnostics.Debug.WriteLine("FPS: + FPS.ToString());
+#else
+            Window.Title = "FPS: " + FPS;
+#endif
+
+            FrameCount = 0;
+            TimeSinceLastUpdate -= UpdateInterval;
         }
     }
 }

@@ -42,19 +42,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Characters\AttributePair.cs" />
+    <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\Entity.cs" />
     <Compile Include="Characters\EntityData.cs" />
     <Compile Include="Characters\EntityDataManager.cs" />
+    <Compile Include="Characters\NonPlayerCharacter.cs" />
+    <Compile Include="Controls\Control.cs" />
+    <Compile Include="Controls\ControlManager.cs" />
+    <Compile Include="Controls\Label.cs" />
+    <Compile Include="Controls\LeftRightSelector.cs" />
+    <Compile Include="Controls\LinkLabel.cs" />
+    <Compile Include="Controls\ListBox.cs" />
+    <Compile Include="Controls\PictureBox.cs" />
+    <Compile Include="Controls\SpinBox.cs" />
     <Compile Include="Conversations\Conversation.cs" />
     <Compile Include="Conversations\ConversationManager.cs" />
     <Compile Include="Conversations\ConversationNode.cs" />
+    <Compile Include="Effects\BaseEffect.cs" />
+    <Compile Include="Effects\BaseEffectData.cs" />
+    <Compile Include="Effects\BaseEffectDataManager.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="GameStateManager.cs" />
+    <Compile Include="InputHandler.cs" />
     <Compile Include="Items\ArmorData.cs" />
+    <Compile Include="Items\Backpack.cs" />
     <Compile Include="Items\BaseItem.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Chest.cs" />
     <Compile Include="Items\ChestData.cs" />
+    <Compile Include="Items\GameItem.cs" />
+    <Compile Include="Items\GameItemManager.cs" />
     <Compile Include="Items\ItemDataManager.cs" />
     <Compile Include="Items\ItemManager.cs" />
+    <Compile Include="Items\ItemSprite.cs" />
     <Compile Include="Items\Key.cs" />
     <Compile Include="Items\KeyData.cs" />
     <Compile Include="Items\Reagent.cs" />
@@ -78,12 +98,23 @@
     <Compile Include="Spells\Spell.cs" />
     <Compile Include="Spells\SpellData.cs" />
     <Compile Include="Spells\SpellDataManager.cs" />
+    <Compile Include="Sprites\AnimatedSprite.cs" />
+    <Compile Include="Sprites\Animation.cs" />
+    <Compile Include="Sprites\BaseSprite.cs" />
     <Compile Include="Talents\Talent.cs" />
     <Compile Include="Talents\TalentData.cs" />
     <Compile Include="Talents\TalentDataManager.cs" />
+    <Compile Include="TileEngine\Camera.cs" />
+    <Compile Include="TileEngine\Engine.cs" />
+    <Compile Include="TileEngine\MapLayer.cs" />
+    <Compile Include="TileEngine\Tile.cs" />
+    <Compile Include="TileEngine\TileMap.cs" />
+    <Compile Include="TileEngine\Tileset.cs" />
     <Compile Include="Traps\Trap.cs" />
     <Compile Include="Traps\TrapData.cs" />
     <Compile Include="Traps\TrapManager.cs" />
+    <Compile Include="World\Level.cs" />
+    <Compile Include="World\World.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

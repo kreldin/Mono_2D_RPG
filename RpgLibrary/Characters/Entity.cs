@@ -70,8 +70,8 @@ namespace RpgLibrary.Characters
         public AttributePair Stamina { get; } = new AttributePair(0);
         public AttributePair Mana { get; } = new AttributePair(0);
 
-        public int Level { get; private set; }
-        public int Experience { get; private set; }
+        public int Level { get; }
+        public int Experience { get; }
 
         public Dictionary<string, Skill> Skills { get; } = new Dictionary<string, Skill>();
         public List<Modifier> SkillModifiers { get; } = new List<Modifier>();

@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using XRpgLibrary;
-using XRpgLibrary.Characters;
-using XRpgLibrary.SpriteClasses;
-using XRpgLibrary.TileEngine;
+using RpgLibrary;
+using RpgLibrary.Characters;
+using RpgLibrary.Sprites;
+using RpgLibrary.TileEngine;
 
 namespace MonoRPG.Components
 {
@@ -30,7 +30,7 @@ namespace MonoRPG.Components
             Camera.Update(gameTime);
             Character.Update(gameTime);
 
-            HandleInput();
+            HandleInput(gameTime);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -38,11 +38,11 @@ namespace MonoRPG.Components
             Character.Draw(gameTime, spriteBatch);
         }
 
-        private void HandleInput()
+        private void HandleInput(GameTime gameTime)
         {
             HandleZoomInput();
 
-            HandleMovementInput();
+            HandleMovementInput(gameTime);
 
             HandleToggleInput();
 
@@ -70,7 +70,7 @@ namespace MonoRPG.Components
                 Camera.LockToSprite(Sprite);
         }
 
-        private void HandleMovementInput()
+        private void HandleMovementInput(GameTime gameTime)
         {
             var motion = new Vector2();
 
@@ -105,7 +105,7 @@ namespace MonoRPG.Components
                 Sprite.IsAnimating = true;
                 motion.Normalize();
 
-                Sprite.Position += motion * Sprite.Speed;
+                Sprite.Position += motion * Sprite.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Sprite.LockToMap();
 
                 if (Camera.Mode == CameraMode.Follow)

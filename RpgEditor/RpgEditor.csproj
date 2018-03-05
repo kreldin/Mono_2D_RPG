@@ -231,10 +231,6 @@
       <Project>{add18b9e-5e3a-459b-93c1-574f18e8d3db}</Project>
       <Name>RpgLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XRpgLibrary\XRpgLibrary.csproj">
-      <Project>{58985492-131e-4d3d-b0c1-75ef96d1cff7}</Project>
-      <Name>XRpgLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

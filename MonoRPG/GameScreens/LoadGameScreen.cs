@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoRPG.Components;
+using RpgLibrary;
 using RpgLibrary.Characters;
-using XRpgLibrary;
-using XRpgLibrary.Characters;
-using XRpgLibrary.Controls;
-using XRpgLibrary.SpriteClasses;
-using XRpgLibrary.TileEngine;
-using XRpgLibrary.World;
+using RpgLibrary.Controls;
+using RpgLibrary.Sprites;
+using RpgLibrary.TileEngine;
+using RpgLibrary.World;
 
 namespace MonoRPG.GameScreens
 {

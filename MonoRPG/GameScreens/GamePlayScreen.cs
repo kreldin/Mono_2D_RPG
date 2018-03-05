@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoRPG.Components;
-using XRpgLibrary;
-using XRpgLibrary.World;
+using RpgLibrary;
+using RpgLibrary.World;
 
 namespace MonoRPG.GameScreens
 {

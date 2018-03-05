@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using RpgLibrary.Skills;
-using XRpgLibrary;
-using XRpgLibrary.Characters;
-using XRpgLibrary.Controls;
+using RpgLibrary;
+using RpgLibrary.Characters;
+using RpgLibrary.Controls;
 
 namespace MonoRPG.GameScreens
 {

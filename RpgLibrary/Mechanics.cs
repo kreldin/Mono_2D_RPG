@@ -25,9 +25,7 @@ namespace RpgLibrary
                 skill.ClassModifiers.Keys.Where(s => s == entity.Class).Sum(s => skill.ClassModifiers[s]) +
                 entity.SkillModifiers.Where(m => m.Modifying == skill.SkillName).Sum(m => m.Amount);
 
-            var lower = skill.PrimaryAttribute.ToLower();
-
-            switch (lower)
+            switch (skill.PrimaryAttribute.ToLower())
             {
                 case "strength":
                     target += Skill.AttributeModifier(entity.Strength);
@@ -53,6 +51,35 @@ namespace RpgLibrary
                 result = true;
 
             return result;
+        }
+
+        public static int GetAttributeByString(Entity entity, string attribute)
+        {
+            var value = 0;
+
+            switch (attribute.ToLower())
+            {
+                case "strength":
+                    value = entity.Strength;
+                    break;
+                case "dexterity":
+                    value = entity.Dexterity;
+                    break;
+                case "cunning":
+                    value = entity.Cunning;
+                    break;
+                case "willpower":
+                    value = entity.Willpower;
+                    break;
+                case "magic":
+                    value = entity.Magic;
+                    break;
+                case "constitution":
+                    value = entity.Constitution;
+                    break;
+            }
+
+            return value;
         }
     }
 }

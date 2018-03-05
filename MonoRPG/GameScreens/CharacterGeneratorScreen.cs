@@ -6,13 +6,11 @@ using MonoRPG.Components;
 using RpgLibrary.Characters;
 using RpgLibrary.Items;
 using RpgLibrary.Skills;
-using XRpgLibrary;
-using XRpgLibrary.Characters;
-using XRpgLibrary.Controls;
-using XRpgLibrary.Items;
-using XRpgLibrary.SpriteClasses;
-using XRpgLibrary.TileEngine;
-using XRpgLibrary.World;
+using RpgLibrary;
+using RpgLibrary.Controls;
+using RpgLibrary.Sprites;
+using RpgLibrary.TileEngine;
+using RpgLibrary.World;
 
 namespace MonoRPG.GameScreens
 {

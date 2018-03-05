@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
 using RpgLibrary.Characters;
 using RpgLibrary.Items;
@@ -11,7 +7,7 @@ using RpgLibrary.Skills;
 
 namespace MonoRPG
 {
-    static class DataManager
+    internal static class DataManager
     {
         public static Dictionary<string, ArmorData> Armor { get; } = new Dictionary<string, ArmorData>();
 
