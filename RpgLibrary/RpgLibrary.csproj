@@ -65,6 +65,10 @@
     <Compile Include="Effects\DamageEffectData.cs" />
     <Compile Include="Effects\HealEffect.cs" />
     <Compile Include="Effects\HealEffectData.cs" />
+    <Compile Include="Effects\Resistance.cs" />
+    <Compile Include="Effects\ResistanceData.cs" />
+    <Compile Include="Effects\Weakness.cs" />
+    <Compile Include="Effects\WeaknessData.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="GameStateManager.cs" />
     <Compile Include="InputHandler.cs" />

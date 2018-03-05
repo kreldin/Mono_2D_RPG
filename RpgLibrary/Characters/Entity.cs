@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RpgLibrary.Effects;
 using RpgLibrary.Skills;
 using RpgLibrary.Spells;
 using RpgLibrary.Talents;
@@ -85,6 +86,10 @@ namespace RpgLibrary.Characters
         private int Attack { get; }
         private int Damage { get; }
         private int Defense { get; }
+
+        public List<Resistance> Resistances { get; } = new List<Resistance>();
+
+        public List<Weakness> Weaknesses { get; } = new List<Weakness>();
 
         private Entity()
         {

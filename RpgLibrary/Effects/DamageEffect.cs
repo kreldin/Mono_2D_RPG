@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using RpgLibrary.Characters;
 
 namespace RpgLibrary.Effects
@@ -44,6 +40,10 @@ namespace RpgLibrary.Effects
 
             for (var i = 0; i < NumberOfDice; ++i)
                 amount += Mechanics.RollDie(DieType);
+
+            amount = entity.Weaknesses.Where(weakness => weakness.WeaknessType == DamageType).Aggregate(amount, (current, weakness) => weakness.Apply(current));
+
+            amount = entity.Resistances.Where(resistance => resistance.ResistanceType == DamageType).Aggregate(amount, (current, resistance) => resistance.Apply(current));
 
             if (amount < 1)
                 amount = 1;
