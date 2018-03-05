@@ -9,8 +9,14 @@
     <NumberHands>One</NumberHands>
     <AttackValue>8</AttackValue>
     <AttackModifier>0</AttackModifier>
-    <DamageValue>10</DamageValue>
-    <DamageModifier>0</DamageModifier>
+    <DamageEffectData>
+      <Name>Flail</Name>
+      <DamageType>Weapon</DamageType>
+      <AttackType>Health</AttackType>
+      <DieType>D10</DieType>
+      <NumberOfDice>1</NumberOfDice>
+      <Modifier>0</Modifier>
+    </DamageEffectData>
     <AllowableClasses>
       <Item>Fighter</Item>
       <Item>Priest</Item>

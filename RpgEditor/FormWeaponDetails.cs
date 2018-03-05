@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using RpgLibrary;
+using RpgLibrary.Effects;
 using RpgLibrary.Items;
 
 namespace RpgEditor
@@ -27,10 +29,17 @@ namespace RpgEditor
             foreach (var s in FormDetails.EntityDataManager.EntityData.Keys)
                 lbClasses.Items.Add(s);
 
-            foreach (Hands location in Enum.GetValues(typeof(Hands)))
+            foreach (var location in Enum.GetValues(typeof(Hands)))
                 cboHands.Items.Add(location);
 
+            var enumerable = Enum.GetName(typeof(DieType), DieType.D4);
+            if (enumerable != null)
+                foreach (var die in enumerable)
+                    cboDieType.Items.Add(die);
+
             cboHands.SelectedIndex = 0;
+            cboDieType.SelectedIndex = 0;
+            cboDieType.SelectedValue = Enum.GetName(typeof(DieType), DieType.D4);
 
             if (Weapon == null) return;
 
@@ -41,8 +50,18 @@ namespace RpgEditor
             cboHands.SelectedIndex = (int) Weapon.NumberHands;
             mtbAttackValue.Text = Weapon.AttackValue.ToString();
             mtbAttackModifier.Text = Weapon.AttackModifier.ToString();
-            mtbDamageValue.Text = Weapon.DamageValue.ToString();
-            mtbDamageModifier.Text = Weapon.DamageModifier.ToString();
+
+            for (var i = 0; i < cboDieType.Items.Count; ++i)
+            {
+                if (cboDieType.Items[i].ToString() != Weapon.DamageEffectData.DieType.ToString()) continue;
+
+                cboDieType.SelectedIndex = i;
+                cboDieType.SelectedValue = cboDieType.Items[i];
+                break;
+            }
+
+            nudDice.Value = Weapon.DamageEffectData.NumberOfDice;
+            mtbDamageModifier.Text = Weapon.DamageEffectData.Modifier.ToString();
 
             foreach (var s in Weapon.AllowableClasses)
             {
@@ -103,12 +122,6 @@ namespace RpgEditor
                 return;
             }
 
-            if (!int.TryParse(mtbDamageValue.Text, out int damVal))
-            {
-                MessageBox.Show("Damage value must be an interger value.");
-                return;
-            }
-
             if (!int.TryParse(mtbDamageModifier.Text, out int damMod))
             {
                 MessageBox.Show("Damage value must be an interger value.");
@@ -124,9 +137,20 @@ namespace RpgEditor
                 NumberHands = (Hands) cboHands.SelectedIndex,
                 AttackValue = attVal,
                 AttackModifier = attMod,
-                DamageValue = damVal,
-                DamageModifier = damMod,
-                AllowableClasses = (from object o in lbAllowedClasses.Items select o.ToString()).ToArray()
+                AllowableClasses = (from object o in lbAllowedClasses.Items select o.ToString()).ToArray(),
+                DamageEffectData =
+                {
+                    Name = tbName.Text,
+                    AttackType = AttackType.Health,
+
+                    // TODO: Add different damage types
+                    DamageType = DamageType.Weapon,
+                    DieType = (DieType) Enum.Parse(
+                        typeof(DieType),
+                        cboDieType.Items[cboDieType.SelectedIndex].ToString()),
+                    NumberOfDice = (int) nudDice.Value,
+                    Modifier = damMod
+                }
             };
 
             FormClosing -= FormWeaponDetails_FormClosing;

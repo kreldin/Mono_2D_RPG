@@ -41,7 +41,7 @@ namespace MonoRPG
                 PreferredBackBufferHeight = ScreenHeight
             };
 
-            IsFixedTimeStep = false;
+            IsFixedTimeStep = true;
             Graphics.SynchronizeWithVerticalRetrace = false;
 
             ScreenRectangle = new Rectangle(0, 0, ScreenWidth, ScreenHeight);

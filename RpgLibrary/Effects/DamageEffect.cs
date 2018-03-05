@@ -3,7 +3,7 @@ using RpgLibrary.Characters;
 
 namespace RpgLibrary.Effects
 {
-    public enum DamageType { Crushing, Slashing, Piercing, Poison, Disease, Fire, Ice, Lightning, Earth }
+    public enum DamageType { Weapon, Poison, Disease, Fire, Ice, Lightning, Earth }
 
     public enum AttackType { Health, Mana, Stamina }
 

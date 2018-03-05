@@ -18,5 +18,18 @@ namespace RpgLibrary.Effects
         {
             
         }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+
+            sb.Append(Name).Append(", ").Append(DamageType).Append(", ");
+            sb.Append(AttackType).Append(", ");
+            sb.Append(DieType).Append(", ");
+            sb.Append(NumberOfDice).Append(", ");
+            sb.Append(Modifier);
+
+            return sb.ToString();
+        }
     }
 }

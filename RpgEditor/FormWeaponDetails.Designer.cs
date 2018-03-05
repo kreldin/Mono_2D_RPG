@@ -42,10 +42,6 @@
             this.mtbAttackValue = new System.Windows.Forms.MaskedTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.mtbAttackModifier = new System.Windows.Forms.MaskedTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.mtbDamageValue = new System.Windows.Forms.MaskedTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.mtbDamageModifier = new System.Windows.Forms.MaskedTextBox();
             this.lbClasses = new System.Windows.Forms.ListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lbAllowedClasses = new System.Windows.Forms.ListBox();
@@ -54,7 +50,14 @@
             this.btnRemoveAllowed = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.nudDice = new System.Windows.Forms.NumericUpDown();
+            this.cboDieType = new System.Windows.Forms.ComboBox();
+            this.mtbDamageModifier = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDice)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -175,46 +178,12 @@
             this.mtbAttackModifier.Size = new System.Drawing.Size(100, 20);
             this.mtbAttackModifier.TabIndex = 11;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 197);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Damage Value:";
-            // 
-            // mtbDamageValue
-            // 
-            this.mtbDamageValue.Location = new System.Drawing.Point(115, 194);
-            this.mtbDamageValue.Mask = "000";
-            this.mtbDamageValue.Name = "mtbDamageValue";
-            this.mtbDamageValue.Size = new System.Drawing.Size(100, 20);
-            this.mtbDamageValue.TabIndex = 11;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 223);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(90, 13);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Damage Modifier:";
-            // 
-            // mtbDamageModifier
-            // 
-            this.mtbDamageModifier.Location = new System.Drawing.Point(115, 220);
-            this.mtbDamageModifier.Mask = "000";
-            this.mtbDamageModifier.Name = "mtbDamageModifier";
-            this.mtbDamageModifier.Size = new System.Drawing.Size(100, 20);
-            this.mtbDamageModifier.TabIndex = 11;
-            // 
             // lbClasses
             // 
             this.lbClasses.FormattingEnabled = true;
             this.lbClasses.Location = new System.Drawing.Point(238, 36);
             this.lbClasses.Name = "lbClasses";
-            this.lbClasses.Size = new System.Drawing.Size(120, 173);
+            this.lbClasses.Size = new System.Drawing.Size(120, 199);
             this.lbClasses.TabIndex = 12;
             // 
             // label9
@@ -231,7 +200,7 @@
             this.lbAllowedClasses.FormattingEnabled = true;
             this.lbAllowedClasses.Location = new System.Drawing.Point(445, 36);
             this.lbAllowedClasses.Name = "lbAllowedClasses";
-            this.lbAllowedClasses.Size = new System.Drawing.Size(120, 173);
+            this.lbAllowedClasses.Size = new System.Drawing.Size(120, 199);
             this.lbAllowedClasses.TabIndex = 12;
             // 
             // label10
@@ -263,7 +232,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(323, 213);
+            this.btnOK.Location = new System.Drawing.Point(325, 241);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 15;
@@ -272,19 +241,74 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(404, 213);
+            this.btnCancel.Location = new System.Drawing.Point(406, 241);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(56, 199);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Die Type:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(25, 222);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Number of Dice:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(19, 246);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(90, 13);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "Damage Modifier:";
+            // 
+            // nudDice
+            // 
+            this.nudDice.Location = new System.Drawing.Point(115, 220);
+            this.nudDice.Name = "nudDice";
+            this.nudDice.Size = new System.Drawing.Size(120, 20);
+            this.nudDice.TabIndex = 19;
+            // 
+            // cboDieType
+            // 
+            this.cboDieType.FormattingEnabled = true;
+            this.cboDieType.Location = new System.Drawing.Point(115, 196);
+            this.cboDieType.Name = "cboDieType";
+            this.cboDieType.Size = new System.Drawing.Size(121, 21);
+            this.cboDieType.TabIndex = 20;
+            // 
+            // mtbDamageModifier
+            // 
+            this.mtbDamageModifier.Location = new System.Drawing.Point(115, 244);
+            this.mtbDamageModifier.Name = "mtbDamageModifier";
+            this.mtbDamageModifier.Size = new System.Drawing.Size(120, 20);
+            this.mtbDamageModifier.TabIndex = 21;
+            // 
             // FormWeaponDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 251);
+            this.ClientSize = new System.Drawing.Size(589, 276);
             this.ControlBox = false;
+            this.Controls.Add(this.mtbDamageModifier);
+            this.Controls.Add(this.cboDieType);
+            this.Controls.Add(this.nudDice);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnRemoveAllowed);
@@ -293,10 +317,6 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lbAllowedClasses);
             this.Controls.Add(this.lbClasses);
-            this.Controls.Add(this.mtbDamageModifier);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.mtbDamageValue);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.mtbAttackModifier);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.mtbAttackValue);
@@ -316,6 +336,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Weapon Details";
             ((System.ComponentModel.ISupportInitialize)(this.nudWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,10 +358,6 @@
         private System.Windows.Forms.MaskedTextBox mtbAttackValue;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.MaskedTextBox mtbAttackModifier;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.MaskedTextBox mtbDamageValue;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.MaskedTextBox mtbDamageModifier;
         private System.Windows.Forms.ListBox lbClasses;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox lbAllowedClasses;
@@ -349,5 +366,11 @@
         private System.Windows.Forms.Button btnRemoveAllowed;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown nudDice;
+        private System.Windows.Forms.ComboBox cboDieType;
+        private System.Windows.Forms.MaskedTextBox mtbDamageModifier;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using RpgLibrary.Effects;
 
 namespace RpgLibrary.Items
 {
@@ -7,20 +8,20 @@ namespace RpgLibrary.Items
         public Hands NumberHands { get; protected set; }
         public int AttackValue { get; protected set; }
         public int AttackModifier { get; protected set; }
-        public int DamageValue { get; protected set; }
+        public DamageEffectData DamageEffectData { get; protected set; }
         public int DamageModifier { get; protected set; }
 
         public Weapon(
             string name, string type, int price, float weight,
-            Hands hands, int attackValue, int attackModifier, int damageValue, 
-            int damageModifier, params string[] allowableClasses)
+            Hands hands, int attackValue, int attackModifier,
+            DamageEffectData damageEffectData,
+            params string[] allowableClasses)
             : base(name, type, price, weight, allowableClasses)
         {
             NumberHands = hands;
             AttackValue = attackValue;
             AttackModifier = attackModifier;
-            DamageValue = damageValue;
-            DamageModifier = damageModifier;
+            DamageEffectData = damageEffectData;
         }
 
         public override object Clone()
@@ -29,7 +30,7 @@ namespace RpgLibrary.Items
 
             AllowableClasses.CopyTo(allowedClasses, 0);
 
-            return new Weapon(Name, Type, Price, Weight, NumberHands, AttackValue, AttackModifier, DamageValue, DamageModifier, allowedClasses);
+            return new Weapon(Name, Type, Price, Weight, NumberHands, AttackValue, AttackModifier, DamageEffectData, allowedClasses);
         }
 
         public override string ToString()
@@ -40,8 +41,7 @@ namespace RpgLibrary.Items
             itemString.Append(itemDivider).Append(NumberHands).Append(itemDivider);
             itemString.Append(AttackValue.ToString()).Append(itemDivider);
             itemString.Append(AttackModifier.ToString()).Append(itemDivider);
-            itemString.Append(DamageValue.ToString()).Append(itemDivider);
-            itemString.Append(DamageModifier.ToString());
+            itemString.Append(DamageEffectData);
 
             foreach (var charClass in AllowableClasses)
                 itemString.Append(itemDivider).Append(charClass);

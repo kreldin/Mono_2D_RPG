@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using RpgLibrary.Effects;
 
 namespace RpgLibrary.Items
 {
@@ -12,8 +13,7 @@ namespace RpgLibrary.Items
         public Hands NumberHands;
         public int AttackValue;
         public int AttackModifier;
-        public int DamageValue;
-        public int DamageModifier;
+        public DamageEffectData DamageEffectData;
         public string[] AllowableClasses;
 
         public WeaponData()
@@ -32,8 +32,7 @@ namespace RpgLibrary.Items
             newString.Append(NumberHands).Append(divider);
             newString.Append(AttackValue).Append(divider);
             newString.Append(AttackModifier).Append(divider);
-            newString.Append(DamageValue).Append(divider);
-            newString.Append(DamageModifier).Append(divider);
+            newString.Append(DamageEffectData);
 
             foreach (var s in AllowableClasses)
                 newString.Append(divider).Append(s);
