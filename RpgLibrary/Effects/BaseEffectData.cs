@@ -8,5 +8,11 @@ namespace RpgLibrary.Effects
 {
     public class BaseEffectData
     {
+        public string Name { get; set; }
+
+        public BaseEffectData()
+        {
+            
+        }
     }
 }

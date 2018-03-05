@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RpgLibrary.Effects
 {
     public class BaseEffectDataManager
     {
+        public Dictionary<string, BaseEffectData> EffectData { get; } = new Dictionary<string, BaseEffectData>();
     }
 }

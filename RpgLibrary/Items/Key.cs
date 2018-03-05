@@ -15,9 +15,7 @@ namespace RpgLibrary.Items
 
         public override object Clone()
         {
-            var key = new Key(Name, Type);
-
-            return key;
+            return new Key(Name, Type);
         }
     }
 }
