@@ -50,6 +50,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GameScreens\BaseGameState.cs" />
     <Compile Include="GameScreens\CharacterGeneratorScreen.cs" />
+    <Compile Include="GameScreens\ConversationScreen.cs" />
     <Compile Include="GameScreens\GamePlayScreen.cs" />
     <Compile Include="GameScreens\LoadGameScreen.cs" />
     <Compile Include="GameScreens\SkillScreen.cs" />

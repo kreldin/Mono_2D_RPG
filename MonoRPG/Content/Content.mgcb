@@ -480,3 +480,10 @@
 /processorParam:TextureFormat=Color
 /build:ObjectSprites/itemimages.png
 
+#begin Fonts/scenefont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/scenefont.spritefont
+

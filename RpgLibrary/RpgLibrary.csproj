@@ -57,7 +57,8 @@
     <Compile Include="Controls\SpinBox.cs" />
     <Compile Include="Conversations\Conversation.cs" />
     <Compile Include="Conversations\ConversationManager.cs" />
-    <Compile Include="Conversations\ConversationNode.cs" />
+    <Compile Include="Conversations\GameScene.cs" />
+    <Compile Include="Conversations\SceneOption.cs" />
     <Compile Include="Effects\BaseEffect.cs" />
     <Compile Include="Effects\BaseEffectData.cs" />
     <Compile Include="Effects\BaseEffectDataManager.cs" />
