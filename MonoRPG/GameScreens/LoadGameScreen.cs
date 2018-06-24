@@ -155,7 +155,7 @@ namespace MonoRPG.GameScreens
             tilesetTexture = Game.Content.Load<Texture2D>(@"Tilesets\tileset2");
             var tileset2 = new Tileset(tilesetTexture, 8, 8, Engine.TileWidth, Engine.TileHeight);
 
-            var tilesets = new List<Tileset> { tileset1, tileset2 };
+            new List<Tileset> { tileset1, tileset2 };
 
             var layer = new MapLayer(100, 100);
 
@@ -186,9 +186,10 @@ namespace MonoRPG.GameScreens
             splatter.SetTile(2, 0, new Tile(2, 1));
             splatter.SetTile(3, 0, new Tile(0, 1));
 
-            var mapLayers = new List<MapLayer> { layer, splatter };
+            var map = new TileMap(tileset1, layer);
+            map.AddTileset(tileset2);
+            map.AddLayer(splatter);
 
-            var map = new TileMap(tilesets, mapLayers);
             var level = new Level(map);
 
             GamePlayScreen.World = new World(GameRef, GameRef.ScreenRectangle);
