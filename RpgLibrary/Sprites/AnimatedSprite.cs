@@ -38,6 +38,8 @@ namespace RpgLibrary.Sprites
             }
         }
 
+        public Vector2 Center => new Vector2(Position.X + (Width / 2f), Position.Y + (Height / 2f));
+
         public AnimatedSprite(Texture2D texture, Dictionary<AnimationKey, Animation> animations)
         {
             Texture = texture;

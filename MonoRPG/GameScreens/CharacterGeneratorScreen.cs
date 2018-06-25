@@ -8,6 +8,7 @@ using RpgLibrary.Items;
 using RpgLibrary.Skills;
 using RpgLibrary;
 using RpgLibrary.Controls;
+using RpgLibrary.Conversations;
 using RpgLibrary.Sprites;
 using RpgLibrary.TileEngine;
 using RpgLibrary.World;
@@ -149,22 +150,9 @@ namespace MonoRPG.GameScreens
 
         private void CreatePlayer()
         {
-            var animationDown = new Animation(3, 32, 32, 0, 0);
-            var animationLeft = new Animation(3, 32, 32, 0, 32);
-            var animationRight = new Animation(3, 32, 32, 0, 64);
-            var animationUp = new Animation(3, 32, 32, 0, 96);
-
-            var animations = new Dictionary<AnimationKey, Animation>
-            {
-                { AnimationKey.Down, animationDown },
-                { AnimationKey.Left, animationLeft },
-                { AnimationKey.Right, animationRight} ,
-                { AnimationKey.Up, animationUp }
-            };
-
             var sprite = new AnimatedSprite(
                 CharacterImages[GenderSelector.SelectedIndex, ClassSelector.SelectedIndex], 
-                animations);
+                AnimationManager.Instance.Animations);
 
             var gender = EntityGender.Male;
 
@@ -195,8 +183,6 @@ namespace MonoRPG.GameScreens
 
             tilesetTexture = Game.Content.Load<Texture2D>(@"Tilesets\tileset2");
             var tileset2 = new Tileset(tilesetTexture, 8, 8, Engine.TileWidth, Engine.TileHeight);
-
-            new List<Tileset> { tileset1, tileset2 };
 
             var layer = new MapLayer(100, 100);
 
@@ -252,6 +238,132 @@ namespace MonoRPG.GameScreens
             GamePlayScreen.World = new World(GameRef, GameRef.ScreenRectangle);
             GamePlayScreen.World.AddLevel(level);
             GamePlayScreen.World.CurrentLevel = 0;
+
+            var npcSprite = new AnimatedSprite(
+                GameRef.Content.Load<Texture2D>(@"Sprites\NPCSprites\Eliza"),
+                AnimationManager.Instance.Animations)
+            {
+                Position = new Vector2(5 * Engine.TileWidth, 5 * Engine.TileHeight)
+            };
+
+            var npcEntityData = new EntityData("Eliza", 10, 10, 10, 10, 10, 10, "20|CON|12", "16|WIL|16", "0|0|0");
+            var entity = new Entity("Eliza", npcEntityData, EntityGender.Female, EntityType.NPC);
+            var npc = new NonPlayerCharacter(entity, npcSprite);
+            npc.SetConversation("eliza1");
+
+            GamePlayScreen.World.Levels[GamePlayScreen.World.CurrentLevel].Characters.Add(npc);
+
+            CreateConversation();
+        }
+
+        private void CreateConversation()
+        {
+            var c = new Conversation("eliza1", "welcome");
+
+            var scene = new GameScene(
+                GameRef,
+                "basic_scene",
+                "The unthinkable has happened. A thief has stolen the eyes of the village guardian." + 
+                " With out his eyes the dragon will not be animated if the village is attacked.",
+                new List<SceneOption>());
+
+            var action = new SceneAction
+            {
+                Action = ActionType.Talk,
+                Parameter = "none"
+            };
+
+            var option = new SceneOption("Continue", "welcome2", action);
+
+            scene.Options.Add(option);
+
+            c.AddScene("welcome", scene);
+
+            scene = new GameScene(
+                GameRef,
+                "basic_scene",
+                "Will you retrieve the eyes of the dargon for us?",
+                new List<SceneOption>());
+
+            action = new SceneAction
+            {
+                Action = ActionType.Change,
+                Parameter = "none"
+            };
+
+            option = new SceneOption("Yes", "eliza2", action);
+            scene.Options.Add(option);
+
+            action = new SceneAction()
+            {
+                Action = ActionType.Talk,
+                Parameter = "none"
+            };
+
+            option = new SceneOption("No", "pleasehelp", action);
+            scene.Options.Add(option);
+
+            c.AddScene("welcome2", scene);
+
+            scene = new GameScene(
+                GameRef,
+                "basic_scene",
+                "Please, you are the only one that can help us. If you change your mind " +
+                "come back and see me.",
+                new List<SceneOption>());
+
+            action = new SceneAction
+            {
+                Action = ActionType.End,
+                Parameter = "none"
+            };
+
+            option = new SceneOption("Bye", "welcome2", action);
+            scene.Options.Add(option);
+
+            c.AddScene("pleasehelp", scene);
+
+            ConversationManager.Instance.AddConversation("eliza1", c);
+
+            c = new Conversation("eliza2", "thankyou");
+
+            scene = new GameScene(
+                GameRef,
+                "basic_scene",
+                "Thank you for agreeing to help us! Please find Faulke in the inn and ask " +
+                "him what he knows about this thief",
+                new List<SceneOption>());
+
+            action = new SceneAction
+            {
+                Action = ActionType.Quest,
+                Parameter = "Faulke"
+            };
+
+            option = new SceneOption("Continue", "thankyou2", action);
+
+            scene.Options.Add(option);
+
+            c.AddScene("thankyou", scene);
+
+            scene = new GameScene(
+                GameRef,
+                "basic_scene",
+                "Return to me once you've spoken with Faulke.",
+                new List<SceneOption>());
+
+            action = new SceneAction
+            {
+                Action = ActionType.End,
+                Parameter = "none"
+            };
+
+            option = new SceneOption("Good Bye", "thankyou2", action);
+            scene.Options.Add(option);
+
+            c.AddScene("thankyou2", scene);
+
+            ConversationManager.Instance.AddConversation("eliza2", c);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace RpgLibrary.Conversations
     public sealed class ConversationManager
     {
         [ContentSerializer]
-        public Dictionary<string, Conversation> ConversationList { get; private set; }
+        public Dictionary<string, Conversation> ConversationList { get; private set; } = new Dictionary<string, Conversation>();
 
         public static ConversationManager Instance { get; } = new ConversationManager();
 

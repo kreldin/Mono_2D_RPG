@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoRPG.Components;
 using RpgLibrary;
+using RpgLibrary.Characters;
 using RpgLibrary.World;
 
 namespace MonoRPG.GameScreens
@@ -19,6 +21,23 @@ namespace MonoRPG.GameScreens
         {
             World.Update(gameTime);
             Player.Update(gameTime);
+            Player.Camera.LockToSprite(Player.Sprite);
+
+            if (InputHandler.IsKeyReleased(Keys.Space) ||
+                InputHandler.IsButtonReleased(Buttons.A, PlayerIndex.One))
+            {
+                foreach (var c in World.Levels[World.CurrentLevel].Characters)
+                {
+                    var distance = Vector2.Distance(Player.Sprite.Center, c.Sprite.Center);
+
+                    if (!(c is NonPlayerCharacter npc) || !(distance < Character.SpeakingRadius)) continue;
+                    if (!npc.HasConversation) continue;
+
+                    StateManager.PushState(GameRef.ConversationScreen);
+                    GameRef.ConversationScreen.SetConversation(Player, npc, npc.CurrentConversation);
+                    GameRef.ConversationScreen.StartConversation();
+                }
+            }
 
             base.Update(gameTime);
         }

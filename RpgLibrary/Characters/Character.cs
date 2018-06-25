@@ -7,6 +7,9 @@ namespace RpgLibrary.Characters
 {
     public class Character
     {
+        public static int SpeakingRadius { get; } = 32;
+        public static int CollisionRadius { get; } = 8;
+
         public Entity Entity { get; protected set; }
 
         public AnimatedSprite Sprite { get; protected set; }

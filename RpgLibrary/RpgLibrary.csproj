@@ -109,6 +109,7 @@
     <Compile Include="Spells\SpellDataManager.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="Sprites\Animation.cs" />
+    <Compile Include="Sprites\AnimationManager.cs" />
     <Compile Include="Sprites\BaseSprite.cs" />
     <Compile Include="Talents\Talent.cs" />
     <Compile Include="Talents\TalentData.cs" />

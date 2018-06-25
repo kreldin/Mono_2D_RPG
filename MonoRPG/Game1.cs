@@ -16,8 +16,8 @@ namespace MonoRPG
         private static int ScreenWidth { get; } = 1024;
         private static int ScreenHeight { get; } = 768;
 
-        private float FPS { get; set; }
-        private float UpdateInterval { get; set; } = 1.0f;
+        private float FramesPerSecond { get; set; }
+        private float UpdateInterval { get; } = 1.0f;
         private float TimeSinceLastUpdate { get; set; }
         private float FrameCount { get; set; }
 
@@ -28,6 +28,8 @@ namespace MonoRPG
         public CharacterGeneratorScreen CharacterGeneratorScreen { get; set; }
         public GamePlayScreen GamePlayScreen { get; set; }
         public SkillScreen SkillScreen { get; set; }
+        public ConversationScreen ConversationScreen { get; set; }
+
         public Rectangle ScreenRectangle { get; }
 
         public GraphicsDeviceManager Graphics { get; }
@@ -59,6 +61,7 @@ namespace MonoRPG
             LoadGameScreen = new LoadGameScreen(this, stateManager);
             GamePlayScreen = new GamePlayScreen(this, stateManager);
             SkillScreen = new SkillScreen(this, stateManager);
+            ConversationScreen = new ConversationScreen(this, stateManager);
 
             stateManager.ChangeState(TitleScreen);
         }
@@ -74,6 +77,7 @@ namespace MonoRPG
 
             DataManager.ReadEntityData(Content);
             DataManager.ReadArmorData(Content);
+            DataManager.ReadShieldData(Content);
             DataManager.ReadChestData(Content);
             DataManager.ReadWeaponData(Content);
             DataManager.ReadSkillData(Content);
@@ -119,11 +123,11 @@ namespace MonoRPG
 
             if (!(TimeSinceLastUpdate > UpdateInterval)) return;
 
-            FPS = FrameCount / TimeSinceLastUpdate;
+            FramesPerSecond = FrameCount / TimeSinceLastUpdate;
 #if XBOX360
-                System.Diagnostics.Debug.WriteLine("FPS: + FPS.ToString());
+                System.Diagnostics.Debug.WriteLine("framesPerSecond: + framesPerSecond.ToString());
 #else
-            Window.Title = "FPS: " + FPS;
+            Window.Title = "FPS: " + FramesPerSecond;
 #endif
 
             FrameCount = 0;

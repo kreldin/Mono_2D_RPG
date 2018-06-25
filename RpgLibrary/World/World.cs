@@ -13,7 +13,7 @@ namespace RpgLibrary.World
 
         private ItemManager Items { get; } = new ItemManager();
 
-        private List<Level> Levels { get; } = new List<Level>();
+        public List<Level> Levels { get; } = new List<Level>();
 
         public Rectangle Screen { get; }
 

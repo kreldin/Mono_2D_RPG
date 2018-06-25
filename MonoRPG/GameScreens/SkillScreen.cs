@@ -89,7 +89,7 @@ namespace MonoRPG.GameScreens
 
             foreach (var s in DataManager.Skills.Keys)
             {
-                var data = content.Load<SkillData>(s);
+                var data = DataManager.Skills[s];
 
                 var label = new Label
                 {

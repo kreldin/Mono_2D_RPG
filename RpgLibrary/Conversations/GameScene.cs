@@ -18,7 +18,13 @@ namespace RpgLibrary.Conversations
         protected string TextureName { get; set; }
         protected Texture2D Texture { get; set; }
         protected SpriteFont Font { get; set; }
-        
+
+        [ContentSerializerIgnore]
+        public SceneAction OptionAction => Options[SelectedIndex].OptionAction;
+
+        public string OptionScene => Options[SelectedIndex].OptionScene;
+
+        public string OptionText => Options[SelectedIndex].OptionText;
 
         public string Text { get; set; }
         public List<SceneOption> Options { get; set; }
@@ -56,6 +62,7 @@ namespace RpgLibrary.Conversations
 
             LoadContent(textureName);
 
+            HighlightColor = Color.Red;
             NormalColor = Color.Black;
 
             Options = options;
@@ -105,7 +112,7 @@ namespace RpgLibrary.Conversations
 
         protected void LoadContent(string textureName)
         {
-            Texture = Game.Content.Load<Texture2D>(@"Backgrounds\" + textureName);
+            Texture = Game.Content.Load<Texture2D>(@"GameScenes\" + textureName);
             Selected = Game.Content.Load<Texture2D>(@"GUI\rightarrowUp");
             Font = Game.Content.Load<SpriteFont>(@"Fonts\scenefont");
         }

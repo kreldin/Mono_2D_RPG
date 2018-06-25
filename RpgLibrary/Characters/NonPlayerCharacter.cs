@@ -8,14 +8,21 @@ namespace RpgLibrary.Characters
 {
     public class NonPlayerCharacter : Character
     {
-        public List<Conversation> Conversations { get; } = new List<Conversation>();
         public List<Quest> Quests { get; } = new List<Quest>();
 
-        public bool HasConversation => Conversations.Count > 0;
-        public bool HasQuest => Quests.Count > 0;
+        public string CurrentConversation { get; private set; }
+        public string CurrentQuest { get; private set; }
+
+        public bool HasConversation => !string.IsNullOrEmpty(CurrentConversation);
+        public bool HasQuest => Quests.Count > 0;      
 
         public NonPlayerCharacter(Entity entity, AnimatedSprite sprite) : base(entity, sprite)
         {
+        }
+
+        public void SetConversation(string conversation)
+        {
+            CurrentConversation = conversation;
         }
     }
 }

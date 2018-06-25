@@ -16,14 +16,14 @@ namespace RpgLibrary.Conversations
         public string Name { get; set; }
         public string FirstScene { get; set; }
 
-        public Dictionary<string, GameScene> GameScenes { get; set; }
+        public Dictionary<string, GameScene> GameScenes { get; set; } = new Dictionary<string, GameScene>();
 
         [ContentSerializerIgnore]
         public GameScene CurrentScene => GameScenes[_currentScene];
 
         private Conversation()
         {
-            
+
         }
 
         public Conversation(string name, string firstScene)
