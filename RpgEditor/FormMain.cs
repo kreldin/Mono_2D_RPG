@@ -112,6 +112,10 @@ namespace RpgEditor
                 keysToolStripMenuItem.Enabled = true;
                 chestsToolStripMenuItem.Enabled = true;
                 skillsToolStripMenuItem.Enabled = true;
+                levelToolStripMenuItem.Enabled = true;
+                charactersToolStripMenuItem.Enabled = true;
+                mapLayerToolStripMenuItem.Enabled = true;
+                tilesetToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -349,6 +353,10 @@ namespace RpgEditor
             keysToolStripMenuItem.Enabled = true;
             chestsToolStripMenuItem.Enabled = true;
             skillsToolStripMenuItem.Enabled = true;
+            levelToolStripMenuItem.Enabled = true;
+            charactersToolStripMenuItem.Enabled = true;
+            mapLayerToolStripMenuItem.Enabled = true;
+            tilesetToolStripMenuItem.Enabled = true;
         }
     }
 }

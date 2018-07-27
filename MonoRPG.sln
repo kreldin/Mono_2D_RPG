@@ -9,6 +9,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgLibrary", "RpgLibrary\Rp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgEditor", "RpgEditor\RpgEditor.csproj", "{FA4A15AC-CABE-4959-BAF7-D99EB7E2ED7D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Old", "Old", "{375F1B61-8016-4391-8ADC-37E62576DD89}"
+	ProjectSection(SolutionItems) = preProject
+		Old\BaseGameState.cs = Old\BaseGameState.cs
+		Old\BattleScreen.cs = Old\BattleScreen.cs
+		Old\CharacterGeneratorScreen.cs = Old\CharacterGeneratorScreen.cs
+		Old\ConversationManager.cs = Old\ConversationManager.cs
+		Old\DataManager.cs = Old\DataManager.cs
+		Old\GamePlayScreen.cs = Old\GamePlayScreen.cs
+		Old\InventoryScreen.cs = Old\InventoryScreen.cs
+		Old\LoadGameScreen.cs = Old\LoadGameScreen.cs
+		Old\MenuScreen.cs = Old\MenuScreen.cs
+		Old\Player.cs = Old\Player.cs
+		Old\QuestDataScreen.cs = Old\QuestDataScreen.cs
+		Old\QuestLogScreen.cs = Old\QuestLogScreen.cs
+		Old\QuestManager.cs = Old\QuestManager.cs
+		Old\SkillScreen.cs = Old\SkillScreen.cs
+		Old\StartMenuScreen.cs = Old\StartMenuScreen.cs
+		Old\TitleScreen.cs = Old\TitleScreen.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
